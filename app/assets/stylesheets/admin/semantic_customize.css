@@ -1,0 +1,31 @@
+
+.ui.button.compacted {
+  padding: 0.78em 0.5em 0.78em;
+}
+.ui.label.compacted {
+  padding: 0.3em 0.3em;
+}
+.ui.message.compacted {
+  padding: 0.2em 0.2em;
+  margin-top: 0.2em;
+}
+.ui.label.input {
+  padding: 0.9em 0.6em;
+}
+.ui.grid > .column_new:not(.row) {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.ui.modal > .help.icon {
+  position: absolute;
+  top: 1.83rem;
+  right: 4rem;
+  color: rgba(230, 29, 29, 0.87);
+}
+.ui.modal > .heart {
+  position: absolute;
+  top: 1.83rem;
+  right: 4rem;
+  color: rgba(230, 29, 29, 0.87);
+}

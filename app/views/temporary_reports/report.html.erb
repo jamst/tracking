@@ -1,0 +1,94 @@
+<% if @message %>
+  <%= @message %>
+<% else %>
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a><%= @report_name %></h2>
+  </div>
+</div>
+
+<div class="ui blue segmen123t">
+  <%= raw @temporary_report.head_html %>
+</div>
+
+<div class="ui grid">
+  <div class="left floated wide column">
+    <%= link_to "#{@temporary_report.name} 下载", report_temporary_reports_path(id:@temporary_report.id,xls:true,report_params:params[:search_params]) , class: 'ui primary button' %>
+  </div>
+</div>
+
+<!-- 图表 -->
+<% @charts.each_with_index do |chart,index|%>
+  <div id="line_chart_<%=index%>" style="height:400px"></div>
+  <%= render 'shared/charts/line_chart',div_id:"line_chart_#{index}",xx:chart[:xx],yy:chart[:yy],y_data:chart[:y_data] %>
+<% end %>
+
+<div class="ui blue segment">
+    <table class="ui compact table">
+      <thead>
+        <tr> 
+          <% @columns.each do |_| %>
+            <th class="center aligned"> <%= _ %> </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% @reports.each do |reports| %>
+        <tr>
+          <% reports.each_with_index do |_,index| %>
+            <td class="center aligned"> <%if @jump_links && @jump_links[index.to_s] %><% params[:search_params][@jump_links[index.to_s]] = _ %><%= link_to "#{_}", report_temporary_reports_path(id:@jump_links[index.to_s+"_id"],report_params:params[:search_params]) %> <% else %> <%= _ %> <% end %> </td>
+          <% end %> 
+        </tr>
+      <% end %>  
+      </tbody>
+    </table>
+    <span class="blue">
+      <%= page_entries_info(@reports) %> 
+    </span>
+      <%= paginate(@reports, :theme => 'admin')%>
+</div>
+
+<!--子报表展示!-->
+<% if @temporary_report.association? %>
+  <% @child_reports.each_with_index do |child,i| %>
+  <div class="ui blue segment">
+      <table class="ui compact table">
+        <thead>
+          <tr> 
+            <% @child_columns[i].each do |_| %>
+              <th class="center aligned"> <%= _ %> </th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+        <% child.each do |reports| %>
+          <tr>
+            <% reports.each do |_| %>
+              <td class="center aligned"> <%= _ %> </td>
+            <% end %> 
+          </tr>
+        <% end %>  
+        </tbody>
+      </table>
+      <span class="blue">
+        <%= page_entries_info(child) %>
+      </span>
+        <%= link_to "下载", report_temporary_reports_path(id:@child_temporary_reports[i].id,xls:true,report_params:params[:search_params]) , class: 'ui primary button' %>
+  </div>
+  <% end %>
+<% end %>
+
+<script type="text/javascript">
+  $(document).find('.dropdown').dropdown({
+    on: 'hover'
+  });
+
+  <% @report_conditions.each do |_| %>
+    <% if params[:search_params] && params[:search_params][_.report_key.to_s].present? %>
+      var params_date = "<%= params[:search_params][_.report_key.to_s] %>"
+      $("#search_params_<%=_.report_key%>").val(params_date)
+    <% end %>
+    $("#id").val("<%= params[:id]%>")
+  <% end %>
+</script>
+<% end %>

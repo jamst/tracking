@@ -1,0 +1,9 @@
+<% if params[:temporary_chart] %>
+  $("#temporary_report_<%= @temporary_report.id %>").replaceWith("<%= j render('list', temporary_report: @temporary_report) %>");
+  $("#chart_report").modal("hide");
+<% else %>
+  $("#chart_report").remove();
+  $('body').append("<%= j(render 'chart_report') %>");
+  $('#chart_report').modal('setting', {autofocus: false}).modal('show');
+  $(".select.dropdown").dropdown();
+<% end %>

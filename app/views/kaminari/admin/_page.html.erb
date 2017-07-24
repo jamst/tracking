@@ -1,0 +1,5 @@
+<% if page.current? %>
+  <a class="item active" href="<%=url %>"><%= page%></a>
+<% else %>
+  <a class="item" href="<%=url %>"><%= page%></a>
+<% end %>

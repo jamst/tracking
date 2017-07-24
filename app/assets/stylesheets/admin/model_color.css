@@ -1,0 +1,107 @@
+/*问题订单状态颜色*/
+.order_detail.problem_status.problem_finish{
+    color:#21BA45 !important;
+    background-color: #fff !important; 
+    border: 1px solid #21BA45 !important; 
+}
+
+.order_detail.problem_status.un_catch{
+    color:#FBBD08 !important;
+    background-color: #fff !important; 
+    border: 1px solid #FBBD08 !important; 
+}
+
+.order_detail.problem_status.under_take{
+    color:#DB2828 !important;
+    background-color: #fff !important; 
+    border: 1px solid #DB2828 !important; 
+}
+
+/*供管问题订单状态颜色*/
+.order_detail_problem.vm_process_status.problem_finish{
+    color:#21BA45 !important;
+    background-color: #fff !important; 
+    border: 1px solid #21BA45 !important; 
+}
+
+.order_detail_problem.vm_process_status.un_process{
+    color:#FBBD08 !important;
+    background-color: #fff !important; 
+    border: 1px solid #FBBD08 !important; 
+}
+
+.order_detail_problem.vm_process_status.problem_undertake{
+    color:#DB2828 !important;
+    background-color: #fff !important; 
+    border: 1px solid #DB2828 !important; 
+}
+
+
+/*问题订单供应商追款颜色*/
+.order_detail_problem.vendor_apply_statue.vendor_apply_finish{
+    color:#21BA45 !important;
+    background-color: #fff !important; 
+    border: 1px solid #21BA45 !important; 
+}
+
+.order_detail_problem.vendor_apply_statue.vendor_un_apply{
+    color:#FBBD08 !important;
+    background-color: #fff !important; 
+    border: 1px solid #FBBD08 !important; 
+}
+
+.order_detail_problem.vendor_apply_statue.vendor_apply_undertake{
+    color:#DB2828 !important;
+    background-color: #fff !important; 
+    border: 1px solid #DB2828 !important; 
+}
+
+
+/*问题订单客户退款颜色*/
+.order_detail_problem.customer_apply_status.customer_apply_finish{
+    color:#21BA45 !important;
+    background-color: #fff !important; 
+    border: 1px solid #21BA45 !important; 
+}
+
+.order_detail_problem.customer_apply_status.customer_un_apply{
+    color:#FBBD08 !important;
+    background-color: #fff !important; 
+    border: 1px solid #FBBD08 !important; 
+}
+
+.order_detail_problem.customer_apply_status.customer_apply_undertake{
+    color:#DB2828 !important;
+    background-color: #fff !important; 
+    border: 1px solid #DB2828 !important; 
+}
+
+
+
+/*取消订单状态颜色*/
+.order_detail.cancel_status.pass_approve{
+    color:#21BA45 !important;
+    background-color: #fff !important; 
+    border: 1px solid #21BA45 !important; 
+}
+
+.order_detail.cancel_status.in_approve{
+    color:#FBBD08 !important;
+    background-color: #fff !important; 
+    border: 1px solid #FBBD08 !important; 
+}
+
+.order_detail.cancel_status.un_approve{
+    color:#DB2828 !important;
+    background-color: #fff !important; 
+    border: 1px solid #DB2828 !important; 
+}
+
+.redeem_status.already_goods{
+  color:#FBBD08 !important;
+  background-color: #fff !important; 
+  border: 1px solid #FBBD08 !important;  
+}
+
+
+

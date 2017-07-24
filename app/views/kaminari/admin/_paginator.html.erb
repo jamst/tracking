@@ -1,0 +1,24 @@
+<%= paginator.render do %>
+  <div class="text_align_right" >
+    <div class="ui pagination menu">
+      <%= first_page_tag unless current_page.first? %>
+      <%= prev_page_tag unless current_page.first? %>
+      <% each_page do |page| %>
+        <% if page.left_outer? || page.right_outer? || page.inside_window? %>
+          <%= page_tag page %>
+        <% elsif !page.was_truncated? %>
+          <%= gap_tag %>
+        <% end %>
+      <% end %>
+      <%= next_page_tag unless current_page.last? %>
+      <%= last_page_tag unless current_page.last? %>
+      <% select_item_count = total_pages > 500  ? 500 : total_pages %>
+        <select class="ui search dropdown selection item" onchange="onPaginationSelect(this)">
+          <%(1..select_item_count).to_a.each do |page| %>
+            <%= select_tag page %>
+          <% end %>
+        </select>
+    </div>
+  </div>
+<% end %>
+

@@ -1,0 +1,10 @@
+zh:
+  ################################# status config #################################
+  activerecord:
+    status:
+      temporary_report:  
+        report_type:
+          general: "普通报表"
+          association: "关联报表"
+          composite: "合成报表"
+          test: "辅助工具报表"

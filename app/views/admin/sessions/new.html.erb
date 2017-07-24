@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Pre-report</title>
+  <%= stylesheet_link_tag 'admin/application' %>
+  <%= javascript_include_tag 'admin/application' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body id="loginBackground">
+<div class="login_container">
+  <div class="ui centered stackable grid">
+    <div class="six wide column">
+      <div class="logo"></div>
+      <% if params[:action] == 'create' && flash[:alert].present? %>
+        <div class="ui negative message">
+          <i class="close icon"></i>
+          <p><%= flash[:alert] %></p>
+        </div>
+      <% end %>
+      <div class="ui segments" align="center">
+        <div class="ui segment">
+          <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), html: { id: 'login_form', novalidate: true, class: 'ui form' } do |f|  %>
+            <div class="field">
+              <div class="ui left icon input">
+                <%= f.input_field :email, placeholder: '用户名' %>
+                <i class="user icon"></i>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input">
+                <%= f.input_field :password, placeholder: '密码' %>
+                <i class="lock icon"></i>
+              </div>
+            </div>
+            <div class="field" style="text-align: left;">
+              <div class="ui checkbox">
+                <%= f.check_box :remember_me %>
+                <label for="remember">记住用户名</label>
+              </div>
+            </div>
+            <%= f.button :submit, value: '登录', class: 'ui big fluid blue icon button login_btn'  %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

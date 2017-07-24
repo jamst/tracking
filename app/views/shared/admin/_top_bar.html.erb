@@ -1,0 +1,19 @@
+<div class="ui fixed top menu">
+  <a href="javascript:void(0)" class="icon active item" id="hideToggle" style="display: flex;"><h3><i class="content icon"></i></h3></a>
+  <a href="javascript:void(0)" class="icon active item" id="showToggle" style="display: none;"><h3><i class="content icon"></i></h3></a>
+  <a href="/admin" data-toggle="slide" class="item"><h3>Pre-report</h3></a>
+  <div class="right menu ">
+    <!-- 头像 -->
+    <div class="item"><span><%= current_employee&.name %></span></div>
+    <a class="icon item pointer" data-toggle="popup" data-content="#user" data-position="bottom right">
+      <%= image_tag 'male.jpg', class: 'ui avatar image' %>
+    </a>
+    <div id="user" class="ui popup">
+      <div class="ui secondary vertical menu">
+        <%= link_to destroy_employee_session_path, method: 'delete', class: 'item' do %>
+          退出系统 <i class="sign out icon"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

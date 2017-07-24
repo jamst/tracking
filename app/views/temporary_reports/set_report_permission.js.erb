@@ -1,0 +1,24 @@
+<% if params[:temporary_report] %>
+   $("#set_report_permission_modal").modal('hide');
+   $("#set_report_permission_modal").remove();
+<% else %>
+   $('#set_report_permission_modal').remove();
+   $('body').append('<div class="ui modal" id="set_report_permission_modal"><i class="close icon"></i><h2 class="ui dividing header">报表权限设置</h2><%= j(render 'set_report_permission') %></div>');
+   $('#set_report_permission_modal').modal('setting', {autofocus: false}).modal('show');
+   $('select.dropdown').dropdown();
+
+   $("#temporary_report_roles").change(function(){
+   	var roles = $("#temporary_report_roles").val()
+   	$.ajax({
+          url: "<%= change_employees_temporary_reports_path %>",
+          type: "get",
+          data: {
+            roles: roles
+          },
+          success: function(data){
+            $('#employee_ids').html(data);
+            $(document).find('.ui.dropdown').dropdown();
+          }
+        });
+      })
+<% end %>

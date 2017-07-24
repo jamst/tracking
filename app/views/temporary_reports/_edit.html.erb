@@ -1,0 +1,86 @@
+
+<%= simple_form_for @temporary_report, url: temporary_report_path(@temporary_report) , method: :put, remote: true, html:{id: 'edit_temporary_report'} do |f| %>
+  
+    <div id="form_message" class="two fields red" style="margin-left: 15px;display:none;" ></div>
+
+    <div class="two fields">
+      <div class="field">
+        <%= f.input :name %>
+      </div>
+      <div class="field">
+        <%= f.input :jump_links, placeholder: "攥取连接"%>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <%= f.text_area :columns, placeholder: "行字断"%>
+      </div>
+      <div class="field">
+        <%= f.text_area :base_sql, placeholder: "SQL脚本"%>
+      </div>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <%= f.text_area :note, placeholder: "备注"%>
+      </div>
+      <div class="field">
+        <%= f.text_area :head_html, placeholder: "搜索条件"%>
+      </div>
+    </div>
+
+    <% @temporary_report.child_reports.each  do |report| %>
+     <div class="two fields" id="report_of_<%= report.id %>"> 
+       <div class="field"><textarea placeholder="行字断" name="parent_report[columns][]" ><%= report[:columns] %></textarea></div>
+       <div class="field"><textarea placeholder="SQL脚本" name="parent_report[base_sql][]"><%= report[:base_sql] %></textarea></div>
+       <input type="hidden" value="<%= report.id %>" name="parent_report[id][]">
+       <%= link_to delete_report_temporary_reports_path(id: report.id), method: :delete, remote: true, data: {confirm: '确认删除此子报表'} do %>
+        <i class="ui icon close red spec_close"  style="margin-top: 28px;"></i>
+       <% end %>
+     </div>
+    <% end %>
+
+    <div id="parent_reports"></div>
+
+    <div class="field">
+      <i class="ui icon plus green" style="cursor: pointer;" onClick="add_new_report();"></i>
+    </div>
+
+    <p class="red">1.SQL变量用#{@report_key}来定义。搜索关联条件report_key在下方设置。</p>
+    <p class="red">2.搜索联动，根据设置的条件在浏览器端获得。</p>
+    <br/>
+
+    <% @report_conditions.each_with_index do |condition_spec, spec_index| %>
+      <%= f.fields_for condition_spec, index: spec_index do |pf|%>
+        <div class="tow fields spec" id="spec_of_<%=pf.object&.id%>" field_index="<%= spec_index %>" >
+          <%= pf.input :name %>
+          <%= pf.input :report_key %>
+          <%= pf.input :report_condition %>
+          <%= pf.input :default_value %>
+          <%= link_to delete_condition_temporary_reports_path(id: @temporary_report.id, condition_id:condition_spec.id), method: :delete, remote: true, data: {confirm: '确认删除此规格'} do %>
+            <i class="ui icon close red spec_close"  style="margin-top: 28px;"></i>
+          <% end %>
+          <%if pf.object.id.present? %>
+            <input type="hidden" value="<%= condition_spec.id %>" name="temporary_report[report_condition][<%= spec_index %>][id]" id="report_condition_<%= spec_index %>_id">
+          <% end %>    
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="field">
+      <i class="ui icon plus green" style="cursor: pointer;" onClick="add_new_line(this);"></i>
+    </div>
+
+    <div class="field">
+      <div class="actions ">
+        <div class="ui button primary" id="commition" >提交</div>
+        <div class="ui cancel button">取消</div>
+      </div>
+    </div>
+
+<% end %>
+
+
+                  
+
+
+

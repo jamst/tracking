@@ -1,0 +1,23 @@
+<% element = params[:element].split("/").last %>
+<% if params[:remove].present? %>
+    $("#<%= element %>").replaceWith('');
+<% elsif params[:reload].present? %>
+  window.location.reload();
+<% else %>
+  <% if params[:p] %>
+    <% @entry.current_ability = current_ability if @entry.respond_to?(:current_ability) %>
+    <% if @entry.destroyed? %>
+      $("#<%= element %>").hide();
+      $("#<%= element %>").remove();
+    <%else%>
+      $("#<%= element %>").replaceWith($('<%=  render(:partial => params[:p] ,:locals => {@entry.class.name.to_s.split("::").last.underscore.to_sym => @entry}).gsub("\n",'').gsub("'","\\\\'").html_safe %>'));
+      $('.button.dropdown').dropdown({on: 'hover', action: function(text, value) {}});
+      $(".button",$("#<%= element %>")).popup();
+      $(".icon",$("#<%= element %>")).popup();
+    <%end%>
+    <% unless params[:ov].nil?%>
+      alert('更新成功');
+    <% end %>
+  <% else %>
+  <% end %>
+<% end %>

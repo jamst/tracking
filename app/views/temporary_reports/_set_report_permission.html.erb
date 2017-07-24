@@ -1,0 +1,17 @@
+<div class="content">
+  <%= simple_form_for @temporary_report, url: set_report_permission_temporary_reports_path(id:@temporary_report.id), remote: true, method: :get, html: {id: 'set_report_permission_form'} do |f| %>
+      
+      <div class="field">
+	    <%= f.label :角色组 %>
+	    <%= f.input_field  :roles, as: :select, multiple: 'multiple', collection: Role.all.pluck(:name,:id), class: "ui fluid multiple search selection dropdown"  %>
+	  </div>
+      <div class="field" id="employee_ids">
+	    <%= f.label :包含员工 %>
+	    <%= f.input_field  :employee_ids, as: :select, multiple: 'multiple', collection: Employee.all.pluck(:name,:id), class: "ui fluid multiple search selection dropdown"  %>
+	  </div>
+  <% end %>
+</div>
+<div class="actions">
+  <div class="ui mini button cancel">取消</div>
+  <div class="ui mini blue button" onclick="$('#set_report_permission_form').submit()">确定</div>
+</div>

@@ -1,0 +1,49 @@
+<%= form_tag( {url: report_temporary_reports_path(id:@temporary_report.id)}, {method: :get, wrapper: 'semantic_search_form'}) do %>
+  <div class="ui five column grid">
+      <%= hidden_field_tag 'token', 'VUBJKB23UIVI1UU1VOBVI@' %>
+    <div class="column">
+      <%= select_tag "credit_card", options_for_select([ "VISA", "MasterCard" ], "MasterCard"), input_html: {class: 'ui fluid dropdown'} %>
+    </div>
+    <div class="column">
+      <%= radio_button_tag 'color', "green", true, class: "color_input" %> &nbsp; <%= radio_button_tag 'color', "red", false , class: "color_input" %>
+    </div>
+    <div class="column">
+      <%= text_area_tag 'body', nil %>
+    </div>
+    <div class="column">
+      <%= label_tag 'query', 'Your query:' %>
+      <%= text_field_tag 'query' %>
+    </div>
+    <div class="column">
+      <%= datetime_field_tag('start_date', value = nil, options = {}) %>
+    </div>
+    <div class="column">
+      <%= submit_tag "搜索" %>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="ui blue segment">
+  <%= simple_form_for @q,  url: report_temporary_reports_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
+      <%= hidden_field_tag 'id', @temporary_report.id %>
+      <div class="ui five column grid">
+        <div class="column">
+          <div class="ui left icon input fluid">
+            <i class="calendar icon"></i>
+            <%= f.input_field "start_time", placeholder: '开始时间', onfocus: "(this.type='date')", onblur: "(this.type='text')" %>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui left icon input fluid">
+            <i class="calendar icon"></i>
+            <%= f.input_field "end_time", placeholder: '结束时间', onfocus: "(this.type='date')", onblur: "(this.type='text')" %>
+          </div>
+        </div>
+        <div class="column">
+          <%= f.submit '搜索', class: 'ui primary button' %>
+        </div>
+      </div>
+  <% end %>
+</div>
+  

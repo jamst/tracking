@@ -1,0 +1,48 @@
+/*
+*= require semantic
+*= require_tree ../semantic
+*= require admin/main
+*= require admin/model_color
+*= require admin/semantic_customize
+*= require_self
+*/
+
+.ui.active.modal > .selection.dropdown {
+  z-index: 12;
+}
+.ui.fixed.top.menu {
+  background-color: #3c8dbc;
+  z-index: 30 !important;
+ }
+
+ .ui.modal > .close {
+   cursor: pointer;
+   position: absolute;
+   top: 1.0535rem !important;
+   right: 1rem !important;
+   z-index: 1;
+   opacity: .8;
+   font-size: 1.25em;
+   color: #555;
+   width: 2.25rem;
+   height: 2.25rem;
+   padding: .625rem 0 0 0;
+}
+.pagination .ui.selection.dropdown {
+   min-width: 6em !important;
+}
+.ajax_bar_coupon_batch {
+  width: 120px !important;
+}
+
+.bg-brown {
+  background-color: #A5673F;
+}
+.bg-gold {
+  background-color: #F0E68C;
+}
+.bg-blue {
+  background-color: #87CEFA;
+}
+
+

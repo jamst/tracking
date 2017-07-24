@@ -1,0 +1,40 @@
+
+  <div class="hero ac red_bg">
+    <div class="container">
+    <div class="row">
+      <div id='message'  class="span5 offset4">
+        <% if resource.errors.size > 0 %>
+          <% resource.errors.full_messages.each do |msg|%>
+          <div class="row" style="margin-left:0px;">
+            <img src="/images/login/error-icon.png" class='warning_icon'/>
+            <%= content_tag :div, msg, :class => "warning", :id => "Message" %>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="span5 offset4">
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :class=> "form-horizontal" }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+        
+        <%= f.label :password, "New password" %>
+        <div class="input-prepend">
+          <span class="add-on img_pwd"></span>
+            <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+        
+        <%= f.label :password_confirmation, "Confirm password" %>
+        <div class="input-prepend">
+          <span class="add-on img_pwd"></span>
+            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
+        
+        <div class="login_sub">
+          <button class="btn-login" type="submit"><img class="btn-login-img" src="/images/login/submit-button.png" /></button>
+        </div>
+        
+        <% end %>
+      </div>
+    </div>
+    </div>  
+  </div>
+

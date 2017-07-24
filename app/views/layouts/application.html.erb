@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <title>Pre-report</title>
+    <%= stylesheet_link_tag 'admin/application' %>
+    <%= javascript_include_tag 'admin/application' %>
+    <%= csrf_meta_tags %>
+
+    <!-- Start of Insight Tag for ThinkyouPage -->
+    <script type="text/javascript">
+        var opxProtocol = (("https:" == document.location.protocol ) ? "https://" : "http://");
+        var opxRegion = "localhost:3000";
+        document.write(unescape("%3Cscript src='" + opxProtocol + opxRegion + "/opxLoader.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+
+    <script type="text/javascript">
+        var opxtitle = document.title ;
+        var opxurl = document.URL ;
+        var opxreferrer = document.referrer ;
+        var opxcookie = escape(document.cookie) ;
+        var opxuserAgent = escape(navigator.userAgent) ;
+        var opxdomain = "<%= current_employee.id %>";
+        var opxParams = "opxtitle="+opxtitle+";"+"opxurl="+opxurl+";"+"opxreferrer="+opxreferrer+";"+"opxdomain="+opxdomain+";"+"opxcookie="+opxcookie+";"+"opxuserAgent="+opxuserAgent;
+        opxLoad(opxProtocol + opxRegion, opxParams);
+    </script>
+    <!-- End of Insight Tag  -->
+
+  </head>
+  <body>
+    <%= render 'shared/admin/top_bar' %>
+    <div class="pusher">
+      <div class="ui fluid container" >
+        <div class="ui two column grid">
+
+          <div class="side menu close_menu" id="sideMenu">
+            <%= render 'shared/admin/sidebar' %>
+          </div>
+
+          <div class="sixteen wide column" id="content">
+            <div class="thirteen wide column">
+              <%= render 'shared/alert' %>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= yield :scripts %>
+  </body>
+</html>

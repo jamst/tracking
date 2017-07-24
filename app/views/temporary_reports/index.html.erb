@@ -1,0 +1,61 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2>常用报表</h2>
+  </div>
+</div>
+
+<div class="ui blue segment">
+  <%= simple_form_for @q,  url: temporary_reports_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
+      <div class="ui five column grid">
+        <div class="column">
+          <div class="ui left icon input fluid">
+            <i class="calendar icon"></i>
+            <%= f.input_field "created_at-gte", placeholder: '开始时间', onfocus: "(this.type='date')", onblur: "(this.type='text')" %>
+          </div>
+        </div>
+        <div class="column">
+          <div class="ui left icon input fluid">
+            <i class="calendar icon"></i>
+            <%= f.input_field "created_at-lte", placeholder: '结束时间', onfocus: "(this.type='date')", onblur: "(this.type='text')" %>
+          </div>
+        </div>
+        <%= f.input "name-like", placeholder: '名称' %>
+        <div class="column">
+          <%= f.submit '搜索', class: 'ui primary button' %>
+        </div>
+      </div>
+  <% end %>
+</div>
+
+<div class="ui grid">
+  <div class="left floated wide column">
+    <%= link_to "新建", new_temporary_report_path , remote: true, class: 'ui primary button' %>
+  </div>
+</div>
+
+<div class="ui blue segment">
+    <table class="ui selectable striped celled table">
+      <thead>
+        <tr> 
+            <th class="center aligned"> 名称 </th>
+            <th class="center aligned"> 创建时间 </th>
+            <th class="center aligned"> 描述 </th>
+            <th class="center aligned"> 操作 </th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render :partial => "list", :collection => @reports, :as => :temporary_report %>
+      </tbody>
+    </table>
+    <span class="blue">
+      <%= page_entries_info(@reports) %>
+    </span>
+      <%= paginate(@reports, :theme => 'admin')%>
+</div>
+
+
+
+
+
+
+

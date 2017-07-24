@@ -1,0 +1,357 @@
+/*引用全局变量*/
+/*******************************
+         Site Settings
+*******************************/
+/*-------------------
+       Fonts
+--------------------*/
+/*-------------------
+      Base Sizes
+--------------------*/
+/* This is the single variable that controls them all */
+/* The size of page text  */
+/*-------------------
+    Border Radius
+--------------------*/
+/* See Power-user section below
+   for explanation of @px variables
+*/
+/*-------------------
+    Brand Colors
+--------------------*/
+/*--------------
+  Page Heading
+---------------*/
+/*--------------
+   Form Input
+---------------*/
+/* This adjusts the default form input across all elements */
+/* Line Height Default For Inputs in Browser */
+/*-------------------
+    Focused Input
+--------------------*/
+/* Used on inputs, textarea etc */
+/* Used on dropdowns, other larger blocks */
+/*-------------------
+        Sizes
+--------------------*/
+/*
+  Sizes are all expressed in terms of 14px/em (default em)
+  This ensures these "ratios" remain constant despite changes in EM
+*/
+/*-------------------
+        Page
+--------------------*/
+/*-------------------
+      Paragraph
+--------------------*/
+/*-------------------
+       Links
+--------------------*/
+/*-------------------
+  Highlighted Text
+--------------------*/
+/*-------------------
+       Loader
+--------------------*/
+/*-------------------
+        Grid
+--------------------*/
+/*-------------------
+     Transitions
+--------------------*/
+/*-------------------
+     Breakpoints
+--------------------*/
+/*-------------------
+      Site Colors
+--------------------*/
+/*---  Colors  ---*/
+/*---  Light Colors  ---*/
+/*---   Neutrals  ---*/
+/*--- Colored Backgrounds ---*/
+/*--- Colored Headers ---*/
+/*--- Colored Text ---*/
+/*-------------------
+     Alpha Colors
+--------------------*/
+/*-------------------
+       Accents
+--------------------*/
+/* Differentiating Neutrals */
+/* Differentiating Layers */
+/*******************************
+           Power-User
+*******************************/
+/*-------------------
+    Emotive Colors
+--------------------*/
+/* Positive */
+/* Negative */
+/* Info */
+/* Warning */
+/*-------------------
+        Paths
+--------------------*/
+/* For source only. Modified in gulp for dist */
+/*-------------------
+       Em Sizes
+--------------------*/
+/*
+  This rounds @size values to the closest pixel then expresses that value in (r)em.
+  This ensures all size values round to exact pixels
+*/
+/* em */
+/* rem */
+/*-------------------
+  Exact Pixel Values
+--------------------*/
+/*
+  These are used to specify exact pixel values in em
+  for things like borders that remain constantly
+  sized as emSize adjusts
+
+  Since there are many more sizes than names for sizes,
+  these are named by their original pixel values.
+
+*/
+/*-------------------
+       Icons
+--------------------*/
+/* Maximum Glyph Width of Icon */
+/*-------------------
+     Neutral Text
+--------------------*/
+/*-------------------
+     Brand Colors
+--------------------*/
+/*-------------------
+      Borders
+--------------------*/
+/*-------------------
+    Derived Values
+--------------------*/
+/* Loaders Position Offset */
+/* Rendered Scrollbar Width */
+/* Maximum Single Character Glyph Width, aka Capital "W" */
+/* Used to match floats with text */
+/* Header Spacing */
+/* Minimum Mobile Width */
+/* Positive / Negative Dupes */
+/* Responsive */
+/* Columns */
+/*******************************
+             States
+*******************************/
+/*-------------------
+      Disabled
+--------------------*/
+/*-------------------
+        Hover
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+/*-------------------
+        Focus
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+/*-------------------
+    Down (:active)
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+/*-------------------
+        Active
+--------------------*/
+/*---  Colors  ---*/
+/*---  Emotive  ---*/
+/*---  Brand   ---*/
+/*---  Dark Tones  ---*/
+/*---  Light Tones  ---*/
+/*引用自定义变量*/
+/*******************************
+    定义自定义遍历    
+*******************************/
+/*---  Colors  ---*/
+/*自定义颜色*/
+.table_color_f8ffff {
+  background-color: #f8ffff !important;
+}
+.table_color_e6f7fa {
+  background-color: #e6f7fa !important;
+}
+.table_color_f9fafb {
+  background-color: #f9fafb;
+}
+.table_color_fff {
+  background-color: #fff !important;
+}
+.color_a9d5de {
+  color: #a9d5de;
+}
+.color_a9d5de:hover {
+  color: #a9d5de;
+}
+.color_8c8d8d {
+  color: #8c8d8d;
+}
+.color_ff0000 {
+  color: #ff0000;
+}
+.color_ff0000:hover {
+  color: #ff0000;
+}
+.color_3c8dbc {
+  color: #3c8dbc;
+}
+.color_9c9c9d {
+  color: #9c9c9d;
+}
+.color_454545 {
+  color: #454545 !important;
+}
+.color_666 {
+  color: #666;
+}
+.color_fe9b00 {
+  color: #fe9b00;
+}
+.color_2185d0 {
+  color: #2185d0;
+}
+.bg_F3F4F5 {
+  background: #F3F4F5 !important;
+}
+.ui.tabular.menu .active.item {
+  color: #3c8dbc;
+}
+/*布局*/
+.mr_w_5 {
+  margin-right: 5px !important;
+}
+.mr_w_10 {
+  margin-right: 10px !important;
+}
+.mr_w_15 {
+  margin-right: 15px !important;
+}
+.mr_w_20 {
+  margin-right: 20px !important;
+}
+.mr_w_30 {
+  margin-right: 30px !important;
+}
+.mb_14 {
+  margin-bottom: 14px !important;
+}
+.mb_0 {
+  margin-bottom: 0px !important;
+}
+.mt_0 {
+  margin-top: 0px !important;
+}
+.mt_n_20 {
+  margin-top: -20px;
+}
+.mt_20 {
+  margin-top: 20px !important;
+}
+.mr_40 {
+  margin-right: 40px;
+}
+.pt_4 {
+  padding: 4px 14px !important;
+}
+.border_top_0 {
+  border-top: 0 !important;
+}
+.br_upper_about_0 {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.br_lower_about_0 {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.ui.basic.white.buttons .button,
+.ui.basic.white.button {
+  background: #FFFFFF !important;
+}
+.ui.basic.white.buttons .button:hover,
+.ui.basic.white.button:hover {
+  box-shadow: 0px 0px 0px 1px #1678c2 inset !important;
+  color: #1678c2 !important;
+}
+.ui.basic.white.button .actives,
+.ui.basic.white.button.actives {
+  box-shadow: 0px 0px 0px 1px #1678c2 inset !important;
+  color: #1678c2 !important;
+}
+.w-125-text-align-r {
+  width: 125px !important;
+  text-align: right;
+}
+.text_align_right {
+  text-align: right;
+}
+.ui.attached.header {
+  margin: -14px -14px 14px -14px !important;
+  border: 0;
+}
+.header {
+  display: block;
+  font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin: 0em;
+  padding: 1.25rem 1.5rem;
+  box-shadow: none;
+  color: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+}
+.footer_btn {
+  background: #F9FAFB;
+  padding: 1rem 1rem;
+  text-align: right;
+  margin-top: -20px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
+  border-radius: .28571429rem;
+  border-top: 0;
+}
+/*重置css*/
+#archives .ui .form input,
+#archives .ui .form textarea {
+  display: none ;
+}
+.ui[class*="top attached"].menu {
+  border-top: 0;
+}
+/*生成订单*/
+.ui .dimmable .card {
+  width: 100%;
+  margin: 0;
+  box-shadow: 0px 0px 0px 0px #FBBD08;
+}
+.address {
+  border: 2px solid #e0e0e0;
+  font-size: 14px;
+  border-radius: 0.28571429rem;
+}
+.address .name {
+  font-size: 1.5rem;
+  color: #666;
+}
+.actives_border {
+  border: 2px solid #FBBD08;
+  border-radius: 0.28571429rem;
+}

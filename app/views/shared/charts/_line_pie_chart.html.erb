@@ -1,0 +1,125 @@
+<%= javascript_include_tag 'echarts.min' %>
+<script type="text/javascript">
+var div_tag = "<%= div_id %>"
+var myChart = echarts.init(document.getElementById(div_tag));
+var dataMap = {};
+
+function dataFormatter(obj) {
+    var temp;
+    <% @chart_data_tab.each do |year| %>   
+        var max = 0;
+        var sum = 0;
+        temp = obj["<%= year %>"];
+        for (var i = 0, l = temp.length; i < l; i++) {
+            max = Math.max(max, temp[i]);
+            sum += temp[i];
+            obj["<%= year %>"][i] = {
+                name : i,
+                value : temp[i]
+            }
+        }
+        obj["<%= year %>max"] = Math.floor(max / 100) * 100;
+        obj["<%= year %>sum"] = sum;
+    <% end %>
+    return obj;
+}
+
+
+<% (1..@chart_list.size).each do |i|%>
+  var aa= "<%= @chart_dates[i-1] %>".replace(/&quot;/g,""); 
+  eval("(dataMap.dataChart" + <%=i%> + " = dataFormatter" +'(' + aa + '))');
+<% end %>
+
+var option = {
+    baseOption: {
+        timeline: {
+            // y: 0,
+            axisType: 'category',
+            // realtime: false,
+            // loop: false,
+            autoPlay: false,
+            // currentIndex: 2,
+            playInterval: 1000,
+            // controlStyle: {
+            //     position: 'left'
+            // },
+            data: [
+                 <%= @chart_data_tab.join(",") %>
+            ],
+            label: {
+                formatter : function(s) {
+                    return (new Date(s)).getFullYear();
+                }
+            }
+        },
+        tooltip: {
+        },
+        legend: {
+            x: 'right',
+            data: eval("("+"<%= @chart_list %>".replace(/&quot;/g,"'")+")")
+        },
+        calculable : true,
+        grid: {
+            top: 80,
+            bottom: 100,
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'shadow',
+                    label: {
+                        show: true,
+                        formatter: function (params) {
+                            return params.value.replace('\n', '');
+                        }
+                    }
+                }
+            }
+        },
+        xAxis: [
+            {
+                'type':'category',
+                'axisLabel':{'interval':0},
+                'data': <%= @chart_data_x %>,
+                splitLine: {show: false}
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: 'increased qty'
+            }
+        ],
+        series: [
+            <% @chart_list.each do |c|%>
+             {name: '<%=c%>', type: 'bar'},   
+            <% end %>
+            { 
+                type: 'pie',
+                center: ['75%', '35%'],
+                radius: '18%',
+                z: 100
+            }
+        ]
+    },
+    options: [
+        <% @chart_data_tab.each_with_index do |y,index|%>
+            {
+            title: {text: '<%=y[0..3]+"-"+y[4..-1]%>'+" <%=@chart_list.join(' / ')%>"},
+            series: [
+                <% (1..@chart_list.size).each do |i|%>
+                 {data: eval("(dataMap.dataChart<%=i%>['<%=y%>'])") },
+                <% end %>
+                 {data: [
+                <% @chart_list.each_with_index do |c,i|%>
+                  {name: '<%=c%>', value: eval("(dataMap.dataChart<%=i+1%>['<%=y%>sum'])") },
+                <% end %>
+                  ]}
+            ]
+            },
+        <% end %>
+    ]
+}
+
+myChart.setOption(option);
+
+</script>

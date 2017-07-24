@@ -1,0 +1,2 @@
+<label class="string optional " for="temporary_report_employee_ids">包含员工</label>
+<%= select_tag "temporary_report[employee_ids][]", options_for_select(@options.pluck(:name,:id),@options.pluck(:id)),multiple: 'multiple', class: "ui fluid multiple search selection dropdown" %>

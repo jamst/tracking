@@ -1,0 +1,69 @@
+<%= javascript_include_tag 'echarts.min' %>
+<script type="text/javascript">
+	var div_tag = "<%= div_id %>"
+    var myChart = echarts.init(document.getElementById(div_tag));
+    myChart.setOption({
+        tooltip : {
+            trigger: 'axis',
+            showDelay : 0, // 显示延迟，添加显示延迟可以避免频繁切换，单位ms
+        },
+        toolbox: {
+            show:true,
+            feature: {
+                dataView: {show: true, readOnly: false},
+                magicType: {show: true, type:  ['line', 'bar', 'stack', 'tiled']},
+                restore: {show: true},
+                saveAsImage: {show: true}
+            }
+        },
+        calculable: true,
+        legend: {
+            data:<%=raw yy %>
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                splitLine:{
+                    show:false
+                },
+                show : true,
+                axisLabel:{
+                    interval:0,
+                    rotate:45
+                },
+                data : <%=raw xx %>
+            }
+        ],
+
+        yAxis : [
+          <% yy.each_with_index do |y,index|%>
+          <% if index == 0 %>
+            {
+                type : 'value',
+                name : '<%= y %>',
+                axisLabel : {
+                    formatter: '{value}'
+                }
+            },
+            <% else %>
+             {
+                type : 'value',
+                name : ''
+            },
+            <% end %>
+          <% end %>
+          ],
+        series : [
+         <% yy.each_with_index do |y,index|%>
+            {
+                name:'<%= y %>',
+                type:'line',
+                yAxisIndex: 0,
+                data:<%= y_data[index] %>
+            },
+         <% end %>
+        ]
+    });
+
+</script>
