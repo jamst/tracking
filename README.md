@@ -12,29 +12,25 @@
 
  ### mac安装fluent
   https://docs.fluentd.org/v0.12/articles/install-by-dmg
-  ```
-  查看配置文件：
+
+  *查看配置文件：
   /etc/td-agent/td-agent.conf
   ```
-  日志文件：
+  *日志文件：
   /var/log/td-agent/td-agent.log
   ```
-  开启：
+  *开启：
   sudo launchctl load /Library/LaunchDaemons/td-agent.plist
   ```
-  关闭：
+  *关闭：
   sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
   ```
 
  ### Linux下安装：
   http://www.cnblogs.com/hymenz/p/3670918.html
-  redhat上运行如下命令即可。
-  curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
-  启动相关的服务/etc/init.d/td-agent start  
-  ```
 
  ### 然后通过webHDFS接口，写入到hdfs文件系统中。
   http://shineforever.blog.51cto.com/1429204/1599771/ 
-  ```
+
 
 
