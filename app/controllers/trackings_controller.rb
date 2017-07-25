@@ -24,10 +24,9 @@ class TrackingsController < ActionController::Base
     end
 
     tracking_hash[:opxcookie] = opxcookie_hash
-    p "22"*100
-       p tracking_hash[:opxcookie]
-    p "11"*100
-    p tracking_hash[:opxuserAgent]
+
+
+    Tracking << tracking_hash
 
     # 实时处理
       

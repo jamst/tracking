@@ -1,43 +1,40 @@
-# 为什么写这个gem
-  *前置报表，目的是为了满足报表的快速创建与上线实施。减少程序员重复开发成本。
-  *通过在线编辑sql脚本生成数据报表。
-  *技能要求，需要对sql脚本比较熟悉。
-
-
-## 这个gem的工作方式及特性：
-
-1、充分利用rails内置的特性；
-1、基础报表的前置配置
-2、搜索条件配置与sql脚本联动
-3、父子报表，合并报表
-4、报表攥取
-5、图表定制
-6、报表结果导出excell
-7、常见问题归属与查询sql分类
+## 为什么写这个gem
+  *使用cookie来追踪用户行为数据
 
 ## 安装使用
- * 最佳版本要求：安装ruby 2.4.0 ; Rails 5.0.4 ; mysql ; git ; rvm
-   * database.yml配置from统计报表的数据源
+ ### 最佳版本要求：安装ruby 2.4.0 ; Rails 5.0.4 ; mysql ; git ; rvm
+   * database.yml 配置from统计报表的数据源
    * bundle install
    * rake db:create
    * rake db:seed (默认账号: 107422244@qq.com 密码: 11111111)
    * rails s
+   ```
 
-## 使用方法
-1. 普通报表设置
-  * sql数据源定义
-  * 报表表头设置
-  * 搜索与数据源联动
-  * 导出excell结果
-  * 报表权限管理
-2. 父子报表设置
-  * 一个页面显示多个报表的需求
-3. 合并报表设置
-  * 多个数据源合成一个报表的需求 
-4. 报表攥取设置
-  * 询报表之间添加攥取跳转  
-5. 报表与图表设置
-  * 报表与图表同数据源   
-  * 图表设置独立数据源   
+ ### mac安装fluent
+  https://docs.fluentd.org/v0.12/articles/install-by-dmg
+  ```
+  查看配置文件：
+  /etc/td-agent/td-agent.conf
+  ```
+  日志文件：
+  /var/log/td-agent/td-agent.log
+  ```
+  开启：
+  sudo launchctl load /Library/LaunchDaemons/td-agent.plist
+  ```
+  关闭：
+  sudo launchctl unload /Library/LaunchDaemons/td-agent.plist
+  ```
+
+ ### Linux下安装：
+  http://www.cnblogs.com/hymenz/p/3670918.html
+  redhat上运行如下命令即可。
+  curl -L http://toolbelt.treasuredata.com/sh/install-redhat.sh | sh
+  启动相关的服务/etc/init.d/td-agent start  
+  ```
+
+ ### 然后通过webHDFS接口，写入到hdfs文件系统中。
+  http://shineforever.blog.51cto.com/1429204/1599771/ 
+  ```
 
 

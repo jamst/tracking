@@ -49,6 +49,8 @@ gem 'seventeen_mon'
 gem 'rails_com', github: 'qinmingyuan/rails_com', tag: 'v0.7.3' 
 gem 'default_form', github: 'qinmingyuan/default_form', tag: 'v2.4'
 
+gem 'fluent-logger'
+
 
 group :development, :test do
   gem 'factory_girl'
