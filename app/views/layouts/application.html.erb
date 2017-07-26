@@ -8,20 +8,20 @@
     <%= csrf_meta_tags %>
 
     <!-- Start of Insight Tag for ThinkyouPage -->
-    <script type="text/javascript">
+    <script type="text/javascript" async>
         var opxProtocol = (("https:" == document.location.protocol ) ? "https://" : "http://");
         var opxRegion = "localhost:3000";
         document.write(unescape("%3Cscript src='" + opxProtocol + opxRegion + "/opxLoader.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
 
-    <script type="text/javascript">
+    <script type="text/javascript" async>
         var opxtitle = document.title ;
         var opxurl = document.URL ;
         var opxreferrer = document.referrer ;
         var opxcookie = escape(document.cookie) ;
         var opxuserAgent = escape(navigator.userAgent) ;
-        var opxdomain = "<%= current_employee.id %>";
-        var opxParams = "opxtitle="+opxtitle+";"+"opxurl="+opxurl+";"+"opxreferrer="+opxreferrer+";"+"opxdomain="+opxdomain+";"+"opxcookie="+opxcookie+";"+"opxuserAgent="+opxuserAgent;
+        var opxid = "<%= current_employee.id.to_i * 31415926 * 201314 %>";
+        var opxParams = "opxtitle="+opxtitle+";"+"opxurl="+opxurl+";"+"opxreferrer="+opxreferrer+";"+"opxid="+opxid+";"+"opxcookie="+opxcookie+";"+"opxuserAgent="+opxuserAgent;
         opxLoad(opxProtocol + opxRegion, opxParams);
     </script>
     <!-- End of Insight Tag  -->
