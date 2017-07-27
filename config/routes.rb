@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :trackings
+  resources :desboard
 
   resources :temporary_reports do
     collection do 
@@ -26,7 +27,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root to: 'temporary_reports#index'
+  root to: 'desboard#index'
   devise_for :employees, path: "admin", path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', sign_up: 'cmon_let_me_in' }, controllers: { sessions: "admin/sessions", passwords: "admin/passwords"}
   match '/admin/ajax_bar' => 'website/ajax_bar/ajax_bar#ajax', :as => :ajax_bar, :via => [:post, :get]
 

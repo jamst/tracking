@@ -1,0 +1,80 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><font color="#ffffff">当前在线用户</font></h2>
+  </div>
+</div>
+
+<div class="ui segment">
+  <table>
+   <tr style="margin-bottom: 30px;">
+  <% 40.times.each do |i| %>
+    <% i += 1%>
+    <% if ( i%10== 0 && i != 0 ) %>
+       <td style="width: 200px;">
+          <div><%= image_tag 'male.jpg', class: 'ui avatar image' %></div><div><%= "李江锋#{i}" %></div>
+       <td>
+       </tr>  
+       <tr style="margin-bottom: 30px;">
+    <% else %>
+       <td style="width: 200px;">
+          <div><%= image_tag 'male.jpg', class: 'ui avatar image' %></div><div><%= "李江锋#{i}" %></div>
+       </td>
+    <% end %>  
+  <% end %>
+  </tr>
+  </table>
+</div>
+
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><font color="#ffffff">当前产品分析</font></h2>
+  </div>
+</div>
+
+<div class="ui segment">
+  <table>
+   <tr style="margin-bottom: 30px;">
+  <% 40.times.each do |i| %>
+    <% i += 1%>
+    <% if ( i%10== 0 && i != 0 ) %>
+       <td style="width: 200px;">
+          <div><%= image_tag 'male.jpg', class: 'ui avatar image' %></div><div><%= "李江锋#{i}" %></div>
+       <td>
+       </tr>  
+       <tr style="margin-bottom: 30px;">
+    <% else %>
+       <td style="width: 200px;">
+          <div><%= image_tag 'male.jpg', class: 'ui avatar image' %></div><div><%= "李江锋#{i}" %></div>
+       </td>
+    <% end %>  
+  <% end %>
+  </tr>
+  </table>
+</div>
+
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><font color="#ffffff">当前热点分析</font></h2>
+  </div>
+</div>
+
+<div class="ui segment">
+  <table>
+   <tr style="margin-bottom: 30px;">
+  <% 40.times.each do |i| %>
+    <% i += 1%>
+    <% if ( i%10== 0 && i != 0 ) %>
+       <td style="width: 200px;">
+          <div><%= image_tag 'male.jpg', class: 'ui avatar image' %></div><div><%= "李江锋#{i}" %></div>
+       <td>
+       </tr>  
+       <tr style="margin-bottom: 30px;">
+    <% else %>
+       <td style="width: 200px;">
+          <div><%= image_tag 'male.jpg', class: 'ui avatar image' %></div><div><%= "李江锋#{i}" %></div>
+       </td>
+    <% end %>  
+  <% end %>
+  </tr>
+  </table>
+</div>

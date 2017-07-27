@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <title>Pre-report</title>
+    <%= stylesheet_link_tag 'admin/application' %>
+    <%= javascript_include_tag 'admin/application' %>
+    <%= csrf_meta_tags %>
+    <style type="text/css">
+	    .index_page {
+		    position: relative;
+		    background: url(/assets/index_bg.png);
+		    background-size: auto
+		}
+    </style>
+  </head>
+  <body>
+    <%= render 'shared/admin/top_bar' %>
+    <div class="pusher index_page" >
+      <div class="ui fluid container" >
+        <div class="ui two column grid">
+
+          <div class="side menu close_menu" id="sideMenu">
+            <%= render 'shared/admin/sidebar' %>
+          </div>
+
+          <div class="sixteen wide column " id="content">
+            <div class="thirteen wide column ">
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= yield :scripts %>
+  </body>
+</html>
