@@ -10,13 +10,14 @@
 	    .index_page {
 		    position: relative;
 		    background: url(/assets/index_bg.png);
+        background-repeat: repeat-y;
 		    background-size: auto
 		}
     </style>
   </head>
-  <body>
+  <body class="index_page">
     <%= render 'shared/admin/top_bar' %>
-    <div class="pusher index_page" >
+    <div class="pusher " >
       <div class="ui fluid container" >
         <div class="ui two column grid">
 
