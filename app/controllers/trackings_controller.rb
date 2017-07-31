@@ -35,7 +35,6 @@ class TrackingsController < ActionController::Base
 
     tracking_hash[:opxcookie] = opxcookie_hash
     
-
     # 是否首次记录
     if cache_read("uuids_list").include? cookies[:opxPID]
       # 统计游客url浏览记录
@@ -55,12 +54,26 @@ class TrackingsController < ActionController::Base
 
 
     # 根据url来触发响应
-    if params[:opxurl].include?("temporary_reports")
+    if params[:opxurl].include?("product")
       # 产品热点记录叠加统计（产品分类，与到访客户）
       # 某个页面的受访热点（页面热点分布图）
-    elsif params[:opxurl].include?("temporary_reports")
-      p 222
+    elsif params[:opxurl].include?("users/sign_in")
+      # 登录
+    elsif params[:opxurl].include?("look_raw_material/index.html")
+      # 找原料
+    elsif params[:opxurl].include?("firm_orders/index.html")
+      # 实单
+    elsif params[:opxurl].include?("selling_product/index.html")
+      # 卖产品
+    elsif params[:opxurl].include?("syntheticnew/draw_target_index.html")
+      # 查路线
+    elsif params[:opxurl].include?("iou.html")
+      # 白条
+    elsif params[:opxurl].include?("media_reports")
+      # 公告新闻（新闻的追踪）        
     end
+
+    
 
     # 日志处理
     Tracking << tracking_hash
