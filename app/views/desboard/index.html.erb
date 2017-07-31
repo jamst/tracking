@@ -1,7 +1,8 @@
 
 <div class="ui grid">
-  <div class="left floated fourteen wide column">
-    <h3><font color="#ffffff">当前用户分析</font></h3>
+  <div class="left floated fourteen wide column" >
+    <font color="#ffffff" style="font-weight: bold;font-size: 1.28rem;" >当前用户分析</font> 
+    <font color="#ffffff" style="font-weight: bold;font-size: 1rem;margin-left:20px;" >当前卖家：120  ，当前卖家：40</font>
   </div>
 </div>
 
@@ -17,7 +18,7 @@
               <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= i %>
             </a>
           </div>
-          <div style="margin-bottom: 15px; text-align: center;"><%= "李江锋#{i}" %></div>
+          <div style="margin-bottom: 15px; text-align: center;"><%= "药明康德#{i}" %></div>
        <td>
        </tr>  
        <tr style="margin-bottom: 30px;">
@@ -28,7 +29,7 @@
                 <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= i %>
             </a>
           </div>
-          <div style="margin-bottom: 15px;text-align: center;"><%= "李江锋#{i}" %></div>
+          <div style="margin-bottom: 15px;text-align: center;"><%= "药明康德#{i}" %></div>
        </td>
     <% end %>  
   <% end %>
@@ -39,7 +40,8 @@
 
 <div class="ui grid">
   <div class="left floated fourteen wide column">
-    <h3><font color="#ffffff">当前产品分析</font></h3>
+    <font color="#ffffff" style="font-weight: bold;font-size: 1.28rem;" >当前产品分析</font> 
+    <font color="#ffffff" style="font-weight: bold;font-size: 1rem;margin-left:20px;" >当前浏览产品数：450</font>
   </div>
 </div>
 
@@ -52,10 +54,10 @@
        <td style="width: 200px;" style="margin-bottom: 30px;">
           <div style="text-align: center;">
               <a data-remote="true" href="/desboard/analysis?tag=user&id=123" class="ui teal image label" >
-                <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= i %><div class="detail">20</div>
+                <%= image_tag 'http://assets.whmall.com/EBD_0010520?v=1501292928.3491812', class: 'ui avatar image' %><%= i %><div class="detail">20</div>
               </a>
           </div>
-          <div style="margin-bottom: 15px; text-align: center;"><%= "李江锋#{i}" %></div>
+          <div style="margin-bottom: 15px; text-align: center;"><%= "10102-17-7#{i}" %></div>
        <td>
        </tr>  
        <tr style="margin-bottom: 30px;">
@@ -63,10 +65,10 @@
        <td style="width: 200px;" style="margin-bottom: 30px;">
           <div style="text-align: center;">
             <a data-remote="true" href="/desboard/analysis?tag=user&id=123" class="ui blue image label" >
-                <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= i %><div class="detail">20</div>
+                <%= image_tag 'http://assets.whmall.com/EBD_0010520?v=1501292928.3491812', class: 'ui avatar image' %><%= i %><div class="detail">20</div>
             </a>
           </div>
-          <div style="margin-bottom: 15px;text-align: center;"><%= "李江锋#{i}" %></div>
+          <div style="margin-bottom: 15px;text-align: center;"><%= "10102-17-7#{i}" %></div>
        </td>
     <% end %>  
   <% end %>
@@ -84,17 +86,17 @@
 <div class="ui orange segment" style='background: rgba(255, 255, 255, 0.2);'>
   <table>
    <tr>
-  <% 40.times.each do |i| %>
+  <% 8.times.each do |i| %>
     <% i += 1%>
-    <% if ( i%10== 0 && i != 0 ) %>
-       <td style="width: 200px;" style="margin-bottom: 30px;">
+    <% if ( i%4== 0 && i != 0 ) %>
+       <td style="width: 280px;" style="margin-bottom: 30px;">
           <div style="text-align: center;"><%= image_tag 'male.jpg', class: 'ui avatar image' %></div>
           <div style="margin-bottom: 15px; text-align: center;"><%= "李江锋#{i}" %></div>
        <td>
        </tr>  
        <tr style="margin-bottom: 30px;">
     <% else %>
-       <td style="width: 200px;" style="margin-bottom: 30px;">
+       <td style="width: 280px;" style="margin-bottom: 30px;">
           <div style="text-align: center;"><%= image_tag 'male.jpg', class: 'ui avatar image' %></div>
           <div style="margin-bottom: 15px;text-align: center;"><%= "李江锋#{i}" %></div>
        </td>

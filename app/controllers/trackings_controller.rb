@@ -41,6 +41,31 @@ class TrackingsController < ActionController::Base
     # mysql只保留当天（开启里实时追踪的用户）实时数据，历史数据在日志里每天清洗入库。
 
     # 存储到数据库中，id关联
+    
+
+    # 是否首次记录
+    if cache_read("uuids_list").include? cookies[:opxPID]
+      # 统计游客url浏览记录
+      cache_write("#{cookies[:opxPID]}_url_list",params[:opxurl])
+      if params[:opxid].to_i >= 31415926 * 201314
+        
+      else  
+        # 绑定 opxid & opxPID & domain
+      end
+    else
+      # uuid添加进数组
+      cache_array("uuids_list",cookies[:opxPID])
+      # uuids数统计加一
+      cache_write("uuids")
+    end
+
+
+    # 当天上线通知
+    if @book_uuids.include? cookies[:opxPID]
+      # opxPID当天页面list(a,b,c,d)
+    else
+      # 当天在线人数＋1（高频人数，低频人数）（买家人数，卖家人数）
+    end
 
     # 根据url来触发响应
     if params[:opxurl].include?("temporary_reports")
@@ -50,24 +75,6 @@ class TrackingsController < ActionController::Base
     else
       p 222
     end
-
-    # 当天上线通知
-    if @book_uuids.include? cookies[:opxPID]
-      # opxPID当天页面list(a,b,c,d)
-    else
-      # 当天在线人数＋1（高频人数，低频人数）（买家人数，卖家人数）
-    end
-
-    # 是否首次记录
-    if @databases_uuids.include? cookies[:opxPID]
-      unless params[:opxid].to_i >= 31415926 * 201314
-         # 绑定 opxid & opxPID & domain
-      end
-    else
-      # 
-    end
-
-
 
 
     Tracking << tracking_hash
