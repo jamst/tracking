@@ -20,7 +20,7 @@
 <!-- 图表 -->
 <% @charts.each_with_index do |chart,index|%>
   <div id="line_chart_<%=index%>" style="height:400px"></div>
-  <%= render 'shared/charts/line_chart',div_id:"line_chart_#{index}",xx:chart[:xx],yy:chart[:yy],y_data:chart[:y_data] %>
+  <%= render 'shared/charts/line_chart',div_id:"line_chart_#{index}",xx:chart[:xx],yy:chart[:yy],y_data:chart[:y_data],chart_type:chart[:chart_type]||"line"  %>
 <% end %>
 
 <div class="ui blue segment">
