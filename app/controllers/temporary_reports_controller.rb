@@ -5,7 +5,7 @@ class TemporaryReportsController < ApplicationController
 
   # 员工常用报表
   def index
-   	@q = SearchParams.new(params[:search_params] || {}) 
+    @q = SearchParams.new(params[:search_params] || {}) 
     search_params = @q.attributes(self)
     # 辅助工具报表
     test_report = params[:report_type] == "test" ? "and report_type = 10" : "and report_type != 10"
@@ -201,11 +201,11 @@ class TemporaryReportsController < ApplicationController
 
     @temporary_report.temporary_charts.each do |chart|
       chart_item = {}
-
+      chart_item[:chart_type] = chart.chart_type||'line'
       if chart.chart_data.present?
         @chart_reports = ExecuteReport.new(chart.get_report_sql(params)).report 
         chart_item[:yy] =  chart.y_axis.split(",")
-        chart_item[:y_data] =  Matrix.columns( @chart_reports.map{|_|  _[1..-1].map{|a| a.to_f } } ).to_a
+        chart_item[:y_data] =  Matrix.columns( @chart_reports.map{|_|  _[1..-1].map{|a| b = a ? a.to_f : 'null'  ; b } } ).to_a
         # xx轴一般为时间力度
         chart_item[:xx] = @chart_reports.map{|_|_[0]}.uniq
       else
@@ -217,7 +217,7 @@ class TemporaryReportsController < ApplicationController
           mod = arr.index(_[0])
           moder_data = (mod == 0 ? @execute_reports : @execute_child_reports[mod-1])
           mod_columns_size = _[1..-1].to_i
-          @chart_data << moder_data.map{|_| _[mod_columns_size].to_f }
+          @chart_data << moder_data.map{|_| a= _[mod_columns_size] ?  _[mod_columns_size].to_f : 'null' ; a }
           moder_column = (mod == 0 ? @columns[mod_columns_size] : @child_columns[mod-1][mod_columns_size])
           @chart_columns << moder_column
         end
