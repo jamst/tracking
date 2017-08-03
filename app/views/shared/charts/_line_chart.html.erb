@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'echarts.min' %>
 <script type="text/javascript">
-	var div_tag = "<%= div_id %>"
+    var div_tag = "<%= div_id %>"
     var myChart = echarts.init(document.getElementById(div_tag));
     myChart.setOption({
         tooltip : {
@@ -58,9 +58,9 @@
          <% yy.each_with_index do |y,index|%>
             {
                 name:'<%= y %>',
-                type:'line',
+                type: "<%= chart_type %>",
                 yAxisIndex: 0,
-                data:<%= y_data[index] %>
+                data: eval("("+"<%= y_data[index] %>".replace(/&quot;/g,"")+")") 
             },
          <% end %>
         ]
