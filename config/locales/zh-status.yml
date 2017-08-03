@@ -8,3 +8,7 @@ zh:
           association: "关联报表"
           composite: "合成报表"
           test: "辅助工具报表"
+      temporary_chart:
+        chart_type:
+          line: '折线图' 
+          bar: '柱状图'     
