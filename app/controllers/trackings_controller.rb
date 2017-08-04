@@ -38,7 +38,8 @@ class TrackingsController < ActionController::Base
     # 是否首次记录
     if cache_read("uuids_list").include? cookies[:opxPID]
       # 统计游客url浏览记录
-      cache_array("#{cookies[:opxPID]}_url_list",params[:opxurl])
+      cache_array("#{cookies[:opxPID]}_url_list","#{tracking_hash[:time_now]}@#{params[:opxurl]}")
+      cache_sum("#{cookies[:opxPID]}_uuids")
 
       if params[:opxid].to_i >= 31415926 * 201314
         # 当前用户已登录状态
@@ -49,31 +50,18 @@ class TrackingsController < ActionController::Base
       cache_array("uuids_list",cookies[:opxPID])
       # uuids数统计加一
       cache_sum("uuids")
+      # 首次登录信息
+      cache_value("#{cookies[:opxPID]}_message",tracking_hash)
     end
-
-
 
     # 根据url来触发响应
-    if params[:opxurl].include?("product")
-      # 产品热点记录叠加统计（产品分类，与到访客户）
-      # 某个页面的受访热点（页面热点分布图）
-    elsif params[:opxurl].include?("users/sign_in")
-      # 登录
-    elsif params[:opxurl].include?("look_raw_material/index.html")
-      # 找原料
-    elsif params[:opxurl].include?("firm_orders/index.html")
-      # 实单
-    elsif params[:opxurl].include?("selling_product/index.html")
-      # 卖产品
-    elsif params[:opxurl].include?("syntheticnew/draw_target_index.html")
-      # 查路线
-    elsif params[:opxurl].include?("iou.html")
-      # 白条
-    elsif params[:opxurl].include?("media_reports")
-      # 公告新闻（新闻的追踪）        
+    TRACKING_TAG.keys.each do |_|
+      if params[:opxurl].include? _.to_s
+        cache_sum(_)
+        cache_array("#{_}_uuids",cookies[:opxPID],"uniq") 
+        cache_array("#{cookies[:opxPID]}_tags",_,"uniq")
+      end
     end
-
-    
 
     # 日志处理
     Tracking << tracking_hash
