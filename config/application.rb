@@ -49,7 +49,23 @@ end
 
   # 读缓存
   def cache_read(tag)
-    Rails.cache.fetch(tag)||[]
+    Rails.cache.fetch(tag)
+  end
+
+  def delete_cache
+    Rails.cache.read("uuids_list").each do |uuid|
+      Rails.cache.delete("#{uuid}_url_list")
+      Rails.cache.delete("{uuid}_uuids")
+      Rails.cache.delete(uuid)
+      Rails.cache.delete("{uuid}_message")
+      Rails.cache.delete("#{uuid}_tags")
+      TRACKING_TAG.keys.each do |_|
+        Rails.cache.delete(_)
+        Rails.cache.delete("#{_}_uuids") 
+      end
+    end
+    Rails.cache.delete("uuids_list")
+    Rails.cache.delete("uuids")
   end
 
 
