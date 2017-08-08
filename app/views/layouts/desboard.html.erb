@@ -34,5 +34,45 @@
       </div>
     </div>
     <%= yield :scripts %>
+    <script type="text/javascript">
+      // function refresh_tracking(){
+
+      //   console.log('aaaa');
+      //   $.ajax({
+      //     url: '/admin/trackings',
+      //     type: "get",
+      //     dataType: 'script'
+      //   });
+      // }
+      // setInterval('refresh_tracking()',20000)//指定20秒刷新一次
+
+      //定时器名称
+      var refresh_tracking;
+      //开启刷新
+      function a(num){
+         console.log('aaaa');
+        $.ajax({
+          url: '/admin/trackings',
+          type: "get",
+          dataType: 'script'
+        });
+        refresh_tracking = setInterval('refresh_tracking()',num)//指定20秒刷新一次
+      }
+      //停止刷新
+      function b(){
+        clearInterval(refresh_tracking);
+      }
+
+      $('.btn_a').on('click',function(){
+          //接收参数
+        a();
+      });
+
+      $('.btn_b').on('click',function(){
+        b();
+      });
+      
+    </script>
+    
   </body>
 </html>
