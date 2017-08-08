@@ -68,5 +68,7 @@ end
     Rails.cache.delete("uuids")
   end
 
+  # 定义成可配置
+  TRACKING_TAG = {"temporary_reports":"报表","temporary_reports/report":"报表查看"}
 
-  TRACKING_TAG = {"dashboard":"首页","crm/companies":"公司管理","inquiry/inquiries":"询盘","inquiry/inquiries/":"报价","order/details":"订单","finance/reconciliations":"财务"}
+

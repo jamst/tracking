@@ -5,86 +5,32 @@
       <div class="slide_body">
         <div class="scroll_bar">
           <div class="detail-tit">
-            <h4><span>产品：590-93-2 </span><span>总库存：0.5kg</span></h4>
+            <h4><span>姓名：<%= @employee.name %> </span></h4>
             <p class="info-txt">
-              <span>负责人：梅青</span>
-              <span>供应商：成都巴赛泰德生物科技有限公司</span>
+              <span>当天首登时间：<%= @message[:time_now] %></span>
+              <span>登录IP：<%= @message[:ip] %></span>
+            </p>
+            <p class="info-txt">
+              <span>登录设备信息：<%= @message[:opxuserAgent] %></span>
+            </p>
+            <p class="info-txt">
+              <span>浏览TAG：<%= @tags %></span>
             </p>
             <br>
           </div>
           <div class="content">
-              <h4 class="tit"><span>定价信息</span></h4>
+              <h4 class="tit"><span>浏览记录</span></h4>
               <div>
                   <table class="ui selectable striped celled table">
                     <thead>
                       <tr>
-                        <th>包装规格</th>
-                        <th>价格</th>
-                        <th>纯度</th>
-                        <th>类型</th>
-                        <th>状态</th>
+                        <th>访问连接</th>
                       </tr>
                     </thead>
                     </tbody>
-                    <% 10.times.each do %>
+                    <% @urls.each do |url|%>
                       <tr>
-                        <td><%= "10g" %></td>
-                        <td><%= "150.0" %></td>
-                        <td><%= "99%" %></td>
-                        <td><%= "散装" %></td>
-                        <td><%= "启用" %></td>
-                      </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
-              </div>
-            <br>
-            <h4 class="tit"><span>定价信息</span></h4>
-              <div>
-                  <table class="ui selectable striped celled table">
-                    <thead>
-                      <tr>
-                        <th>包装规格</th>
-                        <th>价格</th>
-                        <th>纯度</th>
-                        <th>类型</th>
-                        <th>状态</th>
-                      </tr>
-                    </thead>
-                    </tbody>
-                    <% 10.times.each do %>
-                      <tr>
-                        <td><%= "10g" %></td>
-                        <td><%= "150.0" %></td>
-                        <td><%= "99%" %></td>
-                        <td><%= "散装" %></td>
-                        <td><%= "启用" %></td>
-                      </tr>
-                    <% end %>
-                    </tbody>
-                  </table>
-              </div>
-            <br>
-            <h4 class="tit"><span>定价信息</span></h4>
-              <div>
-                  <table class="ui selectable striped celled table">
-                    <thead>
-                      <tr>
-                        <th>包装规格</th>
-                        <th>价格</th>
-                        <th>纯度</th>
-                        <th>类型</th>
-                        <th>状态</th>
-                      </tr>
-                    </thead>
-                    </tbody>
-                    <% 10.times.each do %>
-                      <tr>
-                        <td><%= "10g" %></td>
-                        <td><%= "150.0" %></td>
-                        <td><%= "99%" %></td>
-                        <td><%= "散装" %></td>
-                        <td><%= "启用" %></td>
+                        <td><a href="<%= url.split("@").last %>"><%= url %></a></td>
                       </tr>
                     <% end %>
                     </tbody>
