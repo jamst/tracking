@@ -1,3 +1,15 @@
+<div class="ui grid" style="margin-bottom: 20px;">
+  <div class="left floated fourteen wide column" >
+    <font style="font-weight: bold;font-size: 1.28rem;" >设置刷新频率</font> 
+    <input type="text" id="shan_ping" value="20000"></input>
+    <button id="btn_a">开启自动刷屏</button>
+    <button id="btn_b">关闭刷屏</button>
+    <a data-remote="true" href="/admin/desboards/delete_tracking" >
+      <button id="btn_b">清除缓存</button>
+    </a>
+  </div>
+</div>
+
 <div id="trackings">
   <%= render "index" %>
 </div>

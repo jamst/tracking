@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :desboard do
     collection do
       get :analysis
+      get :delete_tracking
     end
   end
 

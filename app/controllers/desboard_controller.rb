@@ -13,5 +13,11 @@ class DesboardController < ActionController::Base
     valid_keys = cache_read("#{@opxpid}_tags")
     @tags = TRACKING_TAG.slice(*valid_keys).values.to_s
   end	
+
+  # 清楚所有缓存
+  def delete_tracking
+    delete_cache
+  end
+
   
 end

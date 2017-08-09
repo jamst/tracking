@@ -1,0 +1,3 @@
+class TrackingRecord < ApplicationRecord
+
+end
