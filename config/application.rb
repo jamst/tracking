@@ -55,9 +55,9 @@ end
   def delete_cache
     Rails.cache.read("uuids_list").each do |uuid|
       Rails.cache.delete("#{uuid}_url_list")
-      Rails.cache.delete("{uuid}_uuids")
+      Rails.cache.delete("#{uuid}_uuids")
       Rails.cache.delete(uuid)
-      Rails.cache.delete("{uuid}_message")
+      Rails.cache.delete("#{uuid}_message")
       Rails.cache.delete("#{uuid}_tags")
       TRACKING_TAG.keys.each do |_|
         Rails.cache.delete(_)
