@@ -1,0 +1,3 @@
+class rackingTag < ApplicationRecord
+
+end
