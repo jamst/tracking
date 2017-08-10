@@ -49,6 +49,7 @@ class TrackingsController < ApplicationController
           cache_sum(_)
           cache_array("#{_}_uuids",cookies[:opxPID],"uniq") 
           cache_array("#{cookies[:opxPID]}_tags",_,"uniq")
+          cache_sum("#{cookies[:opxPID]}_#{_}")
         end
       end
     end

@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :trackings
-  resources :desboard do
-    collection do
-      get :analysis
-      get :delete_tracking
-    end
-  end
 
   resources :temporary_reports do
     collection do 
@@ -21,13 +15,21 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :users
     resources :employees do
       collection do
         get 'forget_password'
         post 'forget_password'
         get 'reset_mail'
         get 'error_mail'
+      end
+    end
+    resources :trackings do
+      collection do
+        get :analysis
+        get :delete_tracking
+        get :hot_analysis
+        get :vip_tracking
+        get :load_detail
       end
     end
   end
