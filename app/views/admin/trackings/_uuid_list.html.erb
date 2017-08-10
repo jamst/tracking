@@ -1,0 +1,31 @@
+<div class="ui blue segment" style='background: rgba(255, 255, 255, 0.2);'>
+  <table>
+   <tr>
+  <% @uuids.each_with_index do |uuid,i| %>
+    <% em = Employee.find( cache_read(uuid).to_i/(31415926 * 201314)) %>
+    <% i += 1 %>
+    <% if ( i%10== 0 && i != 0 ) %>
+       <td style="width: 200px;" style="margin-bottom: 30px;">
+          <div style="text-align: center;">
+            <a data-remote="true" href="/admin/trackings/analysis?tag=user&em_id=<%= em&.id %>&opxpid=<%= uuid %>" class="ui teal image label" >
+              <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= cache_read("#{uuid}_uuids") %>
+            </a>
+          </div>
+          <div style="margin-bottom: 15px; text-align: center;<%= 'color:#000000' if @trackend_targets.include? uuid  %>"><%= "#{em&.name }" %><br><%= TRACKING_TAG.slice(*cache_read("#{uuid}_tags")).values.to_s %></div>
+       <td>
+       </tr>  
+       <tr style="margin-bottom: 30px;">
+    <% else %>
+       <td style="width: 200px;" style="margin-bottom: 30px;">
+          <div style="text-align: center;">
+            <a data-remote="true" href="/admin/trackings/analysis?tag=user&em_id=<%= em&.id %>&opxpid=<%= uuid %>" class="ui teal image label" >
+                <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= cache_read("#{uuid}_uuids") %>
+            </a>
+          </div>
+          <div style="margin-bottom: 15px;text-align: center;<%= 'color:#000000' if @trackend_targets.include? uuid  %>"><%= "#{Employee.find( cache_read(uuid).to_i/(31415926 * 201314) )&.name }" %><br><%= TRACKING_TAG.slice(*cache_read("#{uuid}_tags")).values.to_s %></div>
+       </td>
+    <% end %>  
+  <% end %>
+  </tr>
+  </table>
+</div>
