@@ -1,11 +1,13 @@
-<div class="whmall_cover">
-  <div class="whmall_slide">
+<div class="whmall_slide">
     <div class="slide-nav"><span class="slide-close" title="关闭">×</span></div>
     <div class="scroll-wrapper slide-scroll-el ui-scrollbar">
       <div class="slide_body">
         <div class="scroll_bar">
           <div class="detail-tit">
-            <h4><span>姓名：<%= @employee.name %> </span></h4>
+            <h4>
+              <span>姓名：<%= @employee.name %> </span>
+              <%= link_to "#{@tracking_target.include? @opxpid ? '解除实时追踪' : '实时追踪' }", vip_tracking_admin_trackings_path(opxpid:@opxpid), remote: true , class: 'ui primary button' %>
+            </h4>
             <p class="info-txt">
               <span>当天首登时间：<%= @message[:time_now] %></span>
               <span>登录IP：<%= @message[:ip] %></span>
@@ -41,4 +43,15 @@
       </div>
     </div>
   </div>
-</div>
+
+  <script type="text/javascript">
+    function refresh_analisis(){
+        $.ajax({
+          url: '/admin/trackings/load_detail',
+          data: {em_id:<%= @employee.id %>,opxpid:<%= @opxpid %>}
+          type: "get",
+          dataType: 'script'
+        });
+      }
+      setInterval('refresh_analisis()',10000)//指定20秒刷新一次
+  </script>
