@@ -69,6 +69,6 @@ end
   end
 
   # 定义成可配置
-  TRACKING_TAG = {"temporary_reports":"报表","temporary_reports/report":"报表查看"}
+  TRACKING_TAG = {"temporary_reports"=>"报表","temporary_reports/report"=>"报表查看"}
 
 

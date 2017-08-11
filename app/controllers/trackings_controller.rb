@@ -19,7 +19,7 @@ class TrackingsController < ApplicationController
     tracking_hash[:opxreferrer] = params[:opxreferrer] 
     tracking_hash[:opxurl] = params[:opxurl] 
     tracking_hash[:opxid] = params[:opxid] 
-    tracking_hash[:ip] = request.remote_ip
+    tracking_hash[:ip] = request.env['HTTP_X_FORWARDED_FOR'].present? ? request.env['HTTP_X_FORWARDED_FOR'] : request.remote_ip
     tracking_hash[:opxuserAgent] = CGI.unescape(params[:opxuserAgent]) 
 
     # 统计游客url浏览记录
