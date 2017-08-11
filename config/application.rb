@@ -52,6 +52,7 @@ end
     Rails.cache.fetch(tag)
   end
 
+  # 删除缓存
   def delete_cache
     Rails.cache.read("uuids_list").each do |uuid|
       Rails.cache.delete("#{uuid}_url_list")
@@ -62,6 +63,7 @@ end
       TRACKING_TAG.keys.each do |_|
         Rails.cache.delete(_)
         Rails.cache.delete("#{_}_uuids") 
+        Rails.cache.delete("#{uuid}_#{_}")
       end
     end
     Rails.cache.delete("uuids_list")

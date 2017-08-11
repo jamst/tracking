@@ -1,0 +1,33 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column" >
+    <font style="font-weight: bold;font-size: 1.28rem;" >当前用户分析</font> 
+    <font style="font-weight: bold;font-size: 1rem;margin-left:20px;" >当前登录账户数：<%= cache_read("uuids")||0 %></font>
+  </div>
+</div>
+
+<%= render 'uuid_list' %>
+
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h3><font >当前热度分析</font></h3>
+  </div>
+</div>
+
+<div class="ui yellow segment"  style='background: rgba(255, 255, 255, 0.2);margin-bottom: 20px;'>
+    <div class="ui six column grid">
+
+      <% TRACKING_TAG.keys.each do |_| %>
+        <div class="column">
+          <div class="ui left icon input fluid">
+            <div class="ui compact menu" style="margin-left: 50px;">
+              <% cache_read_a = cache_read(_)||0  %>
+              <a data-remote="true" href="/admin/trackings/hot_analysis?hot_tag=<%= _ %>"  class="item"><i class="icon home"></i> <%= TRACKING_TAG[_] %> <div class="floating ui  <%= cache_read_a > 10 ? 'red' : 'teal' %>  label"><%= cache_read_a %></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      
+    </div>
+</div>
+
