@@ -10,7 +10,7 @@
             </h4>
             <p class="info-txt">
               <span>当天首登时间：<%= @message[:time_now] %></span>
-              <span>登录IP：<%= @message[:ip] %></span>
+              <span>登录IP：<a href="http://www.ip.cn/index.php?ip=#{@message[:ip]}" target="_blank"><%= @message[:ip] %></a></span>
             </p>
             <p class="info-txt">
               <span>登录设备信息：<%= @message[:opxuserAgent] %></span>
