@@ -1,25 +1,17 @@
 class TrackingsController < ApplicationController
   # js请求  
   def index
-    
-    begin
-      @cookie_domain = request.env["HTTP_X_DOMAIN_FOR"].to_s.strip unless request.env["HTTP_X_DOMAIN_FOR"].to_s.strip == ""
-    rescue
-    ensure
-      @cookie_domain = ".whmall.test" unless @cookie_domain
-    end
-
     tracking_hash = {}
     # 本机作为第三方的cookie
     tracking_hash[:opxPID] = cookies[:opxPID]
     # 宿主网站cookie
     tracking_hash[:time_now] = Time.now.strftime("%Y-%m-%d %H-%M-%S")
-    tracking_hash[:domain] = @cookie_domain 
+    tracking_hash[:domain] = request.raw_host_with_port
     tracking_hash[:opxtitle] = params[:opxtitle] 
-    tracking_hash[:opxreferrer] = params[:opxreferrer] 
-    tracking_hash[:opxurl] = params[:opxurl] 
+    tracking_hash[:opxreferrer] = CGI.unescape(params[:opxreferrer]) 
+    tracking_hash[:opxurl] = CGI.unescape(params[:opxurl])  
     tracking_hash[:opxid] = params[:opxid] 
-    tracking_hash[:ip] = request.env['HTTP_X_FORWARDED_FOR'].present? ? request.env['HTTP_X_FORWARDED_FOR'] : request.remote_ip
+    tracking_hash[:ip] = (request.env['HTTP_X_FORWARDED_FOR'].present? ? request.env['HTTP_X_FORWARDED_FOR'] : request.remote_ip).split(",").first
     tracking_hash[:opxuserAgent] = CGI.unescape(params[:opxuserAgent]) 
 
     # 统计游客url浏览记录
