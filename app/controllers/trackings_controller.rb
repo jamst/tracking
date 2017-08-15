@@ -8,8 +8,8 @@ class TrackingsController < ApplicationController
     tracking_hash[:time_now] = Time.now.strftime("%Y-%m-%d %H-%M-%S")
     tracking_hash[:domain] = request.raw_host_with_port
     tracking_hash[:opxtitle] = params[:opxtitle] 
-    tracking_hash[:opxreferrer] = params[:opxreferrer] 
-    tracking_hash[:opxurl] = params[:opxurl] 
+    tracking_hash[:opxreferrer] = CGI.unescape(params[:opxreferrer]) 
+    tracking_hash[:opxurl] = CGI.unescape(params[:opxurl])  
     tracking_hash[:opxid] = params[:opxid] 
     tracking_hash[:ip] = (request.env['HTTP_X_FORWARDED_FOR'].present? ? request.env['HTTP_X_FORWARDED_FOR'] : request.remote_ip).split(",").first
     tracking_hash[:opxuserAgent] = CGI.unescape(params[:opxuserAgent]) 
