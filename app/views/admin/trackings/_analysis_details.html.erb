@@ -5,7 +5,7 @@
         <div class="scroll_bar">
           <div class="detail-tit">
             <h4>
-              <span>姓名：<%= @employee.name %> </span>
+              <span>姓名：<%= @employee&.name %> </span>
               <%= link_to "#{@tracking_target.include? @opxpid ? '解除实时追踪' : '实时追踪' }", vip_tracking_admin_trackings_path(opxpid:@opxpid), remote: true , class: 'ui primary button' %>
             </h4>
             <p class="info-txt">

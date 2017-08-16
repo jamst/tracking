@@ -35,7 +35,7 @@ class Admin::TrackingsController < ApplicationController
 
   # 循环查询某人数据
   def load_detail
-    @employee = Employee.find(params[:em_id].to_i)
+    @employee = Employee.find(params[:em_id].to_i) if params[:em_id].to_i >0
     @opxpid = params[:opxpid]
     @message = cache_read("#{@opxpid}_message")
     @urls = cache_read("#{@opxpid}_url_list").reverse
