@@ -1,9 +1,0 @@
-<% if params[:temporary_report] %>
-  $("#temporary_report_<%= @temporary_report.id %>").replaceWith("<%= j render('list', temporary_report: @temporary_report) %>");
-  $("#release_modal").modal("hide");
-<% else %>
-  $("#release_modal").remove();
-  $('body').append("<%= j(render 'composite_report') %>");
-  $('#release_modal').modal('setting', {autofocus: false}).modal('show');
-  $(".select.dropdown").dropdown();
-<% end %>

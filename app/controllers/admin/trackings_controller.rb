@@ -13,7 +13,7 @@ class Admin::TrackingsController < ApplicationController
 
   # 清楚所有缓存
   def delete_tracking
-    delete_cache
+    TrackingRecord.load_tracking
   end
 
   # 热度分析
@@ -48,7 +48,9 @@ class Admin::TrackingsController < ApplicationController
   # 是否已标记／查看过该员工
   def find_trackend_targets
     @tracking_init = TrackingInit.first
+    # 已查看过的人
     @trackend_target = @tracking_init&.trackend_target
+    # 标记未危险追踪的人
     @tracking_target = @tracking_init&.tracking_target
     @trackend_targets = (@trackend_target & @tracking_target).uniq
   end

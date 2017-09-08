@@ -19,17 +19,13 @@ gem 'turbolinks'
 # Login & Authority
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'cancancan'
-gem 'rolify'
 
 # Store
 gem 'mysql2'
 
 #Third Part
-gem 'httparty'
-gem 'jwt'
 gem 'meta-tags'
 gem 'simple_form'
-gem 'carrierwave'
 gem 'remotipart', '~> 1.2'
 gem 'sitemap_generator'
 gem 'spreadsheet'
@@ -37,15 +33,12 @@ gem 'roo'
 gem 'whenever', :require => false
 gem 'kaminari', github: 'amatsuda/kaminari'
 gem 'default_where', github: 'qinmingyuan/default_where'
-gem 'csv-importer', github: 'xor3/csv-importer'
 gem 'roo-xls', github: 'roo-rb/roo-xls'
 gem 'cocoon'
 gem 'savon'
 gem 'seventeen_mon'
 
 # Engines
-# gem 'the_history', github: 'yigexiangfa/the_history', tag: 'v0.2.7'
-# gem 'rails_log', github: 'qinmingyuan/rails_log', tag: 'v2.0'
 gem 'rails_com', github: 'qinmingyuan/rails_com', tag: 'v0.7.3' 
 gem 'default_form', github: 'qinmingyuan/default_form', tag: 'v2.4'
 
