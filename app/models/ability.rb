@@ -8,9 +8,5 @@ class Ability
     cannot :manage, :all
     #send("setup_#{@user.role.name}_access") if @user.present?
   end
-  
-  def setup_admin_access
-    can :manage, TemporaryReport
-  end
 
 end
