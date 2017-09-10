@@ -16,9 +16,9 @@
 
     <script type="text/javascript" async>
         var opxtitle = document.title ;
-        var opxurl = document.URL ;
-        var opxreferrer = document.referrer ;
-        var opxcookie = escape(document.cookie) ;
+        var opxurl = escape(document.URL) ;
+        var opxreferrer = escape(document.referrer) ;
+        //var opxcookie = escape(document.cookie) ;
         var opxuserAgent = escape(navigator.userAgent) ;
         var opxid = "<%= current_employee.id.to_i * 31415926 * 201314 %>";
         var opxParams = "opxtitle="+opxtitle+";"+"opxurl="+opxurl+";"+"opxreferrer="+opxreferrer+";"+"opxid="+opxid+";"+"opxcookie="+opxcookie+";"+"opxuserAgent="+opxuserAgent;

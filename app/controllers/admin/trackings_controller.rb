@@ -13,7 +13,7 @@ class Admin::TrackingsController < ApplicationController
 
   # 清楚所有缓存
   def delete_tracking
-    delete_cache
+    TrackingRecord.load_tracking
   end
 
   # 热度分析
@@ -37,8 +37,8 @@ class Admin::TrackingsController < ApplicationController
   def load_detail
     @employee = Employee.find(params[:em_id].to_i) if params[:em_id].to_i >0
     @opxpid = params[:opxpid]
-    @message = cache_read("#{@opxpid}_message")
-    @urls = cache_read("#{@opxpid}_url_list").reverse
+    @message = cache_read("#{@opxpid}_message")||{}
+    @urls = cache_read("#{@opxpid}_url_list").reverse||[]
     valid_keys = cache_read("#{@opxpid}_tags")
     @tags = TRACKING_TAG.slice(*valid_keys).values.to_s
   end
@@ -48,7 +48,9 @@ class Admin::TrackingsController < ApplicationController
   # 是否已标记／查看过该员工
   def find_trackend_targets
     @tracking_init = TrackingInit.first
+    # 已查看过的人
     @trackend_target = @tracking_init&.trackend_target
+    # 标记未危险追踪的人
     @tracking_target = @tracking_init&.tracking_target
     @trackend_targets = (@trackend_target & @tracking_target).uniq
   end
