@@ -44,6 +44,8 @@ gem 'default_form', github: 'qinmingyuan/default_form', tag: 'v2.4'
 
 gem 'fluent-logger'
 
+gem 'etifr'
+
 
 group :development, :test do
   gem 'factory_girl'
