@@ -1,0 +1,28 @@
+<tr id="employ_<%= employee.id %>">
+  <td class="center aligned">
+    <span><%= employee.id%></span>
+  </td>
+  <td class="center aligned">
+    <%=  employee.email%>
+  </td>
+  <td class="center aligned">
+    <%= employee.name %>
+  </td>
+  <td class="center aligned">
+    <%= employee.mobile %>
+  </td>
+  <td class="center aligned">
+    <%#= employee.parent&.name %>
+  </td>
+  <td class="center aligned">
+    <%#= link_to edit_admin_hr_employee_path(employee), remote: true, data: {content: '修改', variation: 'inverted'}, class: 'ui blue icon button' do %>
+    <!--   <i class="edit icon"></i> -->
+    <%# end %>
+    <%= link_to add_roles_admin_employees_path(id:employee.id), remote: true, data: {content: '分配角色', variation: 'inverted'}, class: 'ui green icon button' do %>
+      <i class="share icon"></i>
+    <% end %>
+    <%#= link_to edit_parent_admin_hr_employee_path(employee), remote: true, data: {content: '分配上级', variation: 'inverted'}, class: 'ui olive icon button' do %>
+      <!-- <i class="share icon"></i> -->
+    <% #end %>
+  </td>
+</tr>
