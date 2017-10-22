@@ -1,0 +1,14 @@
+<% if @q.present? %>
+  <div class="ui blue segment">
+    <%= simple_form_for @q,  url: admin_employees_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
+      <div class="ui five column grid">
+        <%= f.input :email, placeholder: '邮箱' %>
+        <%= f.input "name-like", placeholder: '姓名' %>
+        <%= f.input :employee_status, label: '城市', as: :select, collection: [["unlock",0],["locked",1]], include_blank: '选择状态', input_html: {class: 'ui dropdown fluid'} %>
+        <div class="column">
+          <%= f.submit '搜索', class: 'ui primary button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

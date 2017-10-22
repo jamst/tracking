@@ -1,0 +1,8 @@
+$('#addrole_modal').remove();
+$('body').append('<div class="ui modal" id="addrole_modal"><i class="close icon"></i><h2 class="ui dividing header">分配角色</h2><%= j(render 'add_roles') %></div>');
+$('#addrole_modal').modal('setting', {autofocus: false}).modal('show');
+$('select.dropdown').dropdown();
+
+$("#commition").click(function(){
+    $("#add_roles").submit(); 
+});
