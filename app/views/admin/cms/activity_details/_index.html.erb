@@ -1,0 +1,13 @@
+<table class="ui selectable striped celled table">
+  <thead>
+  <tr>
+    <th class="center aligned">细则名称</th>
+    <th class="center aligned">活动产品</th>
+    <th class="center aligned">活动规则</th>
+    <th class="center aligned">操作</th>
+  </tr>
+  </thead>
+  <%= render :partial => "list", :collection => @activity_details, :as => :activity_detail %>
+  <tbody>
+  </tbody>
+</table>

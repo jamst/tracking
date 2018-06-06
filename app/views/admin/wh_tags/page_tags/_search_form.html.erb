@@ -1,0 +1,14 @@
+<% if @q.present? %>
+  <div class="ui blue segment">
+    <%= simple_form_for @q, url: admin_wh_tags_page_tags_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
+      <div class="ui five column grid">
+        <%= f.input :base_name, placeholder: '专题名称' %>
+        <%= f.input :name, placeholder: '名称' %>
+        <%= f.input :parent_id, as: :select, collection:PageTag.where("parent_id is null")&.map{|_|[_.name,_.id]}, include_blank: '请选择父标签', input_html: {class: 'ui search fluid dropdown '}, label: "父标签" %>
+        <div class="column">
+          <%= f.submit '搜索', class: 'ui primary button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<%= simple_form_for @creative, url: admin_ad_creatives_path, method: :post, remote: true do |f| %>
+  <div id="form_message" class="two fields red" style="margin-left: 15px;display:none;"></div>
+  <%= f.hidden_field :campaign_id, value: @campaign.id %>
+
+  <div class="two fields">
+    <%= f.fields_for 'attachments', @attachment  do |fa| %>
+        <%= fa.input :path %>
+    <% end %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :name, label: "创意名称" %>
+    <%= f.input :link, label: "跳转链接" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :ad_size, as: :select, collection: select_options_from_enum(::Ad::Creative, :ad_size), include_blank: false, input_html: {class: 'ui dropdown fluid'}, label: "创意尺寸" %>
+    <%= f.input :status, as: :select, collection: select_options_from_enum(::Ad::Creative, :status), include_blank: false, input_html: {class: 'ui dropdown fluid'}, label: "状态" %>
+  </div>
+  
+
+  <div class="field">
+    <div class="actions ">
+      <div class="ui button primary" id="commition">提交</div>
+      <div class="ui cancel button">取消</div>
+    </div>
+  </div>
+
+<% end %>
+

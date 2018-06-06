@@ -1,0 +1,8 @@
+$('#set_campaign_modal').remove();
+$('body').append('<div class="ui modal" id="set_campaign_modal"><i class="close icon"></i><h2 class="ui dividing header">设计转化节点</h2><%= j(render 'event_data_script') %></div>');
+$('#set_campaign_modal').modal({allowMultiple: true}).modal('show');
+
+// TODO表单校验
+$("#commition").click(function () {
+  $("#edit_ad_campaign_<%= @campaign.id %>").submit();
+});

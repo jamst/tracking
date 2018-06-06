@@ -1,0 +1,4 @@
+$("#activity_detail_<%= @activity_detail.id %>").replaceWith("<%= j(render partial: 'list', locals: { activity_detail: @activity_detail} ) %>");
+$('#edit_activity_details_modal').modal('hide');
+$('#activity_details_modal').modal('show');
+

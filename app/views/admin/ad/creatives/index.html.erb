@@ -1,0 +1,39 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a><%= @campaign&.name %>：广告创意管理</h2>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="left floated  wide column">
+    <%= render partial: 'search_form' %>
+  </div>
+</div>
+
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to_with_permissions '新增广告创意', new_admin_ad_creative_path(campaign_id:@campaign.id), class: 'ui primary button', remote: true %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr>
+      <th class="center aligned">广告名称</th>
+      <th class="center aligned">创意名称</th>
+      <th class="center aligned">跳转链接</th>
+      <th class="center aligned">类型</th>
+      <th class="center aligned">尺寸</th>
+      <th class="center aligned">状态</th>
+      <th class="center aligned">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render :partial => "list", :collection => @creatives, :as => :creative %>
+    </tbody>
+  </table>
+  <span class="blue">
+      <%= page_entries_info(@creatives) %>
+    </span>
+  <%= paginate(@creatives, :theme => 'admin') %>
+</div>

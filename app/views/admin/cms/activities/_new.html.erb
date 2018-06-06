@@ -1,0 +1,63 @@
+<%= simple_form_for @activity, url: admin_cms_activities_path, method: :post, remote: true do |f| %>
+  <div id="form_message" class="two fields red" style="margin-left: 15px;display:none;"></div>
+
+  <div class="two fields">
+    <%= f.input :name, label: "活动名称" %>
+    <%= f.input :category, as: :select, collection: ActivityCategory.pluck(:name,:id), include_blank: false, input_html: {class: 'ui dropdown fluid'}, label: "活动类型" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :initiator, as: :select, collection: Employee.on_job.pluck(:name,:id), include_blank: '发起人', input_html: {class: 'ui search fluid dropdown '}, label: "活动发起人" %>
+    <%= f.input :status, as: :select, collection: select_options_from_enum(::Activity, :status), include_blank: false, input_html: {class: 'ui dropdown fluid'}, label: "活动状态" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :base_tags, label: "固定标签" %>
+    <%= f.input :tags, label: "自定义标签" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :describe, label: "活动描述" %>
+    <%= f.input :summary, label: "活动总结" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :expected_cost, label: "预计费用" %>
+    <%= f.input :actual_cost, label: "实际费用" %>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label>开始日期</label>
+      <div class="ui calendar J_calendar_datetime" id='calendar1'>
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <%= f.input_field :start_time, as: :string %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+    <label>结束日期</label>
+    <div class="ui calendar J_calendar_datetime" id='calendar2'>
+      <div class="ui input left icon">
+        <i class="calendar icon"></i>
+        <%= f.input_field :expiry_on, as: :string %>
+      </div>
+    </div>
+    </div>>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :effect, as: :select, collection: select_options_from_enum(::Activity, :effect), include_blank: '请选择', selected:"请选择",input_html: {class: 'ui dropdown fluid'}, label: "是否达到预期效果" %>
+  </div>
+
+  <div class="field">
+    <div class="actions ">
+      <div class="ui button primary" id="commition">提交</div>
+      <div class="ui cancel button">取消</div>
+    </div>
+  </div>
+
+<% end %>
+

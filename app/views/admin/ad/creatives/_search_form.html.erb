@@ -1,0 +1,15 @@
+<% if @q.present? %>
+  <div class="ui blue segment">
+    <%= simple_form_for @q, url: admin_ad_creatives_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
+      <div class="ui five column grid">
+        <%= f.input "campaign.name", placeholder: '广告计划名称' %>
+        <%= f.input :name, placeholder: '创意名称' %>
+        <%= f.input :link, placeholder: '跳转链接' %>
+        <%= f.input :ad_size, placeholder: '创意尺寸' %>
+        <div class="column">
+          <%= f.submit '搜索', class: 'ui primary button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

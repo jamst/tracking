@@ -1,0 +1,39 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a>京东券</h2>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="left floated wide column">
+    <%= render 'search_form' %>
+  </div>
+</div>
+
+<div class="ui blue segment">
+
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to '导入京东券', import_jd_tickets_admin_cms_jd_tickets_path, class: "ui primary button mini", style: "margin-bottom: 10px", remote: true %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr>
+      <th class="center aligned">类别</th>
+      <th class="center aligned">面额</th>
+      <th class="center aligned">卡号</th>
+      <th class="center aligned">卡密</th>
+      <th class="center aligned">有效日期</th>
+      <th class="center aligned">发放状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render :partial => "list", :collection => @jd_tickets, :as => :jd_ticket %>
+    </tbody>
+  </table>
+  <span class="blue">
+      <%= page_entries_info(@jd_tickets) %>
+    </span>
+  <%= paginate(@jd_tickets, :theme => 'admin') %>
+</div>

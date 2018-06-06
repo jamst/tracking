@@ -1,0 +1,14 @@
+$('#edit_activity_details_modal').remove();
+$('body').append('<div class="ui modal" id="edit_activity_details_modal"><i class="close icon"></i><h2 class="ui dividing header">修改活动规则</h2><%= j(render 'edit') %></div>');
+$('#edit_activity_details_modal').modal('setting', {autofocus: false}).modal('show');
+$('select.dropdown').dropdown();
+
+
+// TODO表单校验
+$("#commition").click(function () {
+    $("#edit_activity_detail_<%= @activity_detail.id %>").submit();
+});
+
+
+
+

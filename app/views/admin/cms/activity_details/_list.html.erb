@@ -1,0 +1,32 @@
+<tr id="activity_detail_<%= activity_detail.id %>">
+  <td class="center aligned">
+    <%= activity_detail.name %>
+  </td>
+  <td class="top aligned">
+    <%= activity_detail.chemical_cas %>
+  </td>
+  <td class="left aligned">
+    <table class="ui very basic table">
+      <tbody>
+      <% activity_detail.levels_array_for_show.each_with_index do |l, i| %>
+        <tr>
+          <td width="60%"><%= l  %></td>
+          <td width="20%"><%= activity_detail.package_unit  %></td>
+          <td width="20%"><%= activity_detail.prices_show_array[i] %> <%= t :currency %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </td>
+
+
+  <td class="center aligned">
+    <%= link_to edit_admin_cms_activity_detail_path(activity_detail.id), remote: true, 'data-content' => "修改活动细则", 'data-variation' => 'inverted', class: "ui icon blue basic button" do %>
+      <i class="edit icon"></i>
+    <% end %>
+
+    <%= link_to admin_cms_activity_detail_path(activity_detail.id), method: :delete, 'data-content' => "删除活动细则", 'data-variation' => 'inverted', class: "ui icon red basic button", data: {confirm: "确定删除吗?"}, remote: true do %>
+      <i class="close icon"></i>
+    <% end %>
+  </td>
+</tr>

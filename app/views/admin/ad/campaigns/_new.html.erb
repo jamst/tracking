@@ -1,0 +1,60 @@
+<%= simple_form_for @campaign, url: admin_ad_campaigns_path, method: :post, remote: true do |f| %>
+  <div id="form_message" class="two fields red" style="margin-left: 15px;display:none;"></div>
+
+  <div class="two fields">
+    <%= f.input :name, label: "广告名称" %>
+    <%= f.input :activity_id, as: :select, collection: Activity.pluck(:name,:id), include_blank: "选择关联活动", input_html: {class: 'ui dropdown fluid'}, label: "关联活动" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :client_id, as: :select, collection: [["网化商城",1]], include_blank: false, input_html: {class: 'ui search fluid dropdown '}, label: "广告主" %>
+    <%= f.input :status, as: :select, collection: select_options_from_enum(::Ad::Campaign, :status), include_blank: false, input_html: {class: 'ui dropdown fluid'}, label: "广告状态" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :base_tags, label: "固定标签" %>
+    <%= f.input :pre_tags, label: "自定义标签" %>
+  </div>
+
+
+  <div class="two fields">
+    <%= f.input :products, label: "投放产品" %>
+    <%= f.input :city, label: "投放城市" %>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label>开始日期</label>
+      <div class="ui calendar J_calendar_datetime" id='calendar1'>
+        <div class="ui input left icon">
+          <i class="calendar icon"></i>
+          <%= f.input_field :start_time, as: :string %>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+    <label>结束日期</label>
+    <div class="ui calendar J_calendar_datetime" id='calendar2'>
+      <div class="ui input left icon">
+        <i class="calendar icon"></i>
+        <%= f.input_field :end_time, as: :string %>
+      </div>
+    </div>
+    </div>
+  </div>
+
+   <div class="two fields">
+     <%= f.input :describe, label: "活动描述" %>
+     <%= f.input :expected_cost, label: "预计费用" %>
+   </div>
+
+  <div class="field">
+    <div class="actions ">
+      <div class="ui button primary" id="commition">提交</div>
+      <div class="ui cancel button">取消</div>
+    </div>
+  </div>
+
+<% end %>
+

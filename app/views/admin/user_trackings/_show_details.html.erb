@@ -1,0 +1,21 @@
+<div class="ui blue segment">
+  <%= simple_form_for @q,  url: show_details_admin_user_trackings_path, method: :get, remote: true, wrapper: 'semantic_search_form' do |f| %>
+    <div class="ui five column grid">
+      <%= f.input :youke, as: :select, collection: ["游客","客户"] , include_blank: '是否游客', input_html: {class: 'ui search fluid dropdown '} %>
+      <%= f.input :company, placeholder: '客户名称' %>
+      <div class="column">
+        <input type="submit" name="commit" value="搜索" class="ui primary button" data-disable-with="搜索">
+      </div>
+    </div>
+  <% end %>
+
+
+<% if params[:search_params] && params[:search_params][:youke].present? && params[:search_params][:youke] == "游客" %>
+   <%= render 'uuid_list_youke' %>
+<% elsif params[:search_params] && params[:search_params][:company].present? && Company.find_by( name_cn:params[:search_params][:company] ) %>
+   <%= render 'uuid_list_em' %>
+<% else %>
+   <%= render 'uuid_list' %>
+<% end %>
+
+</div>

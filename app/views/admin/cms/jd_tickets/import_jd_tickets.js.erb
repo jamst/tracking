@@ -1,0 +1,24 @@
+$('#import_data_modal').remove();
+$('body').append("<%= j(render 'import_data') %>");
+$('#import_data_modal').modal('setting', {autofocus: false}).modal('show');
+$('select.dropdown').dropdown({placeholder: false});
+
+$('.button').popup();
+$('.label').popup();
+$('i.icon').popup();
+$('a.icon').popup();
+$('select.dropdown').dropdown();
+$('.button.dropdown').dropdown({on: 'hover', action: function(text, value) {}});
+
+$("#import_data_form").form({
+    inline : true,
+    fields: {
+        path: {
+            identifier: 'attachment[path]',
+            rules: [{
+                type: 'empty',
+                prompt: '请选择导入文件'
+            }]
+        }
+    }
+});

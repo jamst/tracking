@@ -1,0 +1,32 @@
+<div class="ui grid" style="margin-top: 10px;">
+  <div class="left floated fourteen wide column" >
+    <% PageTag.where(page_type:"前台客户").map(&:base_name).uniq.each do |base_name| %>
+      <a data-remote="true" href="/admin/user_trackings?base_name=<%=base_name%>"  class="item" style="margin-left: 20px;" >
+        <% if base_name == params[:base_name] || ( !params[:base_name] && base_name == "页面标签" ) %>
+          <font style="font-weight: bold;font-size: 1.28rem;color: orange" ><%=base_name%></font> 
+        <% else %>
+          <font style="font-weight: bold;font-size: 1.28rem;" ><%=base_name%></font> 
+        <% end %>  
+      </a>
+    <% end %>
+  </div>
+</div>
+
+<div class="ui yellow segment"  style='background: rgba(255, 255, 255, 0.2);margin-bottom: 20px;'>
+    <div class="ui six column grid">
+      <% base_name = params[:base_name] ? params[:base_name] : "页面标签" %>
+      <% tags = PageTag.where(base_name:base_name , page_type:"前台客户").inject({}){|o,j| o[j.page_url] = j.name ; o } %>
+      <% tags.keys.each do |_| %>
+        <div class="column">
+          <div class="ui left icon input fluid">
+            <div class="ui compact menu">
+              <% cache_read_a = cache_read(_)||0  %>
+              <a data-remote="true" href="/admin/user_trackings/hot_analysis?hot_tag=<%= _ %>"  class="item"><i class="icon home"></i> <span style="width: 120px;"><%= tags[_] %></span> <div class="floating ui  <%=  cache_read_a > 1000 ? 'red' : (cache_read_a >  300 ? 'orange' : 'teal') %>  label"><%= cache_read_a %></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+</div>
+

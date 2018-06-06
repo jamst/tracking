@@ -1,0 +1,23 @@
+<%= simple_form_for @activity_detail, url: admin_cms_activity_detail_path(@activity_detail), method: :put, remote: true do |f| %>
+  <div id="form_message" class="two fields red" style="margin-left: 15px;display:none;"></div>
+  <%= f.hidden_field :activity_id %>
+  <div class="two fields">
+    <%= f.input :name, label: "细则名称" %>
+    <%= f.input :chemical_cas, label: "参与活动化学品cas" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :packages, label: "规格" %>
+    <%= f.input :denomination, label: "面额" %>
+    <%= f.input :package_unit, collection: select_options_from_enum(ActivityDetail, :package_unit), as: :select, include_blank: false, input_html: {class: 'ui dropdown'} %>
+  </div>
+
+
+  <div class="field">
+    <div class="actions ">
+      <div class="ui button primary" id="commition">提交</div>
+      <div class="ui cancel button">取消</div>
+    </div>
+  </div>
+<% end %>
+

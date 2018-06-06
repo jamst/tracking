@@ -1,0 +1,40 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a>页面标签管理</h2>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="left floated  wide column">
+    <%= render partial: 'search_form' %>
+  </div>
+</div>
+
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to_with_permissions '新增标签', new_admin_wh_tags_page_tag_path(), class: 'ui primary button', remote: true %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr>
+      <th class="center aligned">专题名称</th>
+      <th class="center aligned">名称</th>
+      <th class="center aligned">统计类型</th>
+      <th class="center aligned">页面链接</th>
+      <th class="center aligned">标签状态</th>
+      <th class="center aligned">父标签</th>
+      <th class="center aligned">创建时间</th>
+      <th class="center aligned">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render :partial => "list", :collection => @page_tags, :as => :page_tag %>
+    </tbody>
+  </table>
+  <span class="blue">
+      <%= page_entries_info(@page_tags) %>
+    </span>
+  <%= paginate(@page_tags, :theme => 'admin') %>
+</div>

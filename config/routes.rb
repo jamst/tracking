@@ -1,6 +1,49 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :trackings
+  resources :user_trackings, only: :index do
+    collection do
+      get :image_ad
+      get :click_data
+      get :event_data
+    end
+  end  
+  # 标签
+  namespace :wh_tags do
+    resources :page_tags
+    resources :base_tags
+    resources :pre_tags
+  end
+  # 标签
+  namespace :ad do
+    resources :campaigns do
+      collection do
+        get :event_data_script
+        post :save_event_data
+        get :get_event_data_script
+      end
+    end
+    resources :creatives
+  end
+
+   namespace :cms do
+     resources :activities
+      resources :activity_details
+      resources :articles, except: [:show, :destroy] do
+        collection do
+          post :upload_image
+        end
+      end
+      resources :jd_tickets, only: [:index] do
+        collection do
+          get :import_jd_tickets
+          post :create_import_jd_tickets
+          get :mapping_ticket
+          get :jd_activity_details
+        end
+      end
+    end
+
 
   resources :temporary_reports do
     collection do 
@@ -30,6 +73,17 @@ Rails.application.routes.draw do
         get :hot_analysis
         get :vip_tracking
         get :load_detail
+      end
+    end
+    resources :user_trackings, only: :index do
+      collection do
+        get :analysis
+        get :delete_tracking
+        get :hot_analysis
+        get :analysis_tracking
+        get :user_analysis
+        get :show_details
+        get :get_chart
       end
     end
   end

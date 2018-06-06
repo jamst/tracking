@@ -1,0 +1,62 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a>京东券活动获奖明细</h2>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="left floated  wide column">
+    <%= render partial: 'jd_search_form' %>
+  </div>
+</div>
+
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to '发放京东券', mapping_ticket_admin_cms_jd_tickets_path(activity_id: @activity&.id), remote: true, class: 'ui primary button', data: {confirm: '确认对该活动发放京东券吗?'} %>
+      <%= link_to_with_permissions '京东券管理', admin_cms_jd_tickets_path, class: 'ui primary button' %>
+    </div>
+  </div>
+  
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr>
+      <th class="center aligned">面额</th>
+      <th class="center aligned">活动需求数量</th>
+      <th class="center aligned">库存数量</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @wait_payment.each do |k,v| %>
+        <tr>
+          <td class="center aligned"><%= k %></td>
+          <td class="center aligned"><%= v.size %></td>
+          <td class="center aligned"><%= @jd_tickets[k]&.size || 0 %></td>
+      <% end %>
+    </tbody>
+  </table>
+
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr>
+      <th class="center aligned">订单号</th>
+      <th class="center aligned">客户公司</th>
+      <th class="center aligned">客户联系人</th>
+      <th class="center aligned">客户联系电话</th>
+      <th class="center aligned">活动名称</th>
+      <th class="center aligned">创建时间</th>
+      <th class="center aligned">卡券面额</th>
+      <th class="center aligned">京东卡密</th>
+      <th class="center aligned">卡有效期</th>
+      <th class="center aligned">发放状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render :partial => "welfare_list", :collection => @jdticket_welfares, :as => :jdticket_welfare %>
+    </tbody>
+  </table>
+  <span class="blue">
+      <%= page_entries_info(@jdticket_welfares) %>
+    </span>
+  <%= paginate(@jdticket_welfares, :theme => 'admin') %>
+</div>

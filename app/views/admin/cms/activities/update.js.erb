@@ -1,0 +1,14 @@
+<% if @activity.errors.blank? %>
+$("#activity_<%= @activity.id %>").replaceWith("<%= j(render partial: 'list', locals: { activity: @activity} ) %>");
+$("#activity_modal").modal('hide');
+<% else %>
+$(".red.pointing").remove();
+$(".field").removeClass('error');
+<% @activity.errors.messages.each do |key, value| %>
+//parent()方法：返回被选中元素的父元素
+$("#activity_<%= key %>").parent().addClass('error');
+$("#activity_<%= key %>").parent().append("<div class='ui basic red pointing prompt label transition visible'><%= value[0] %></div>");
+<% end %>
+<% end %>
+
+

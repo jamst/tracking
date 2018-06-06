@@ -1,0 +1,4 @@
+$('#get_campaign_modal').remove();
+$('body').append('<div class="ui modal" id="get_campaign_modal"><i class="close icon"></i><h2 class="ui dividing header">设计转化节点</h2><%= j(render 'get_event_data_script') %></div>');
+$('#get_campaign_modal').modal({allowMultiple: true}).modal('show');
+

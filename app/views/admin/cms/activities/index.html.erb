@@ -1,0 +1,41 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a>活动管理</h2>
+  </div>
+</div>
+
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to_with_permissions '新增活动', new_admin_cms_activity_path(), class: 'ui primary button', remote: true %>
+      <%= link_to_with_permissions '京东券管理', admin_cms_jd_tickets_path, class: 'ui primary button' %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr>
+      <th class="center aligned">活动名称</th>
+      <th class="center aligned">活动类型</th>
+      <th class="center aligned">活动状态</th>
+      <th class="center aligned">固定标签</th>
+      <th class="center aligned">自定义标签</th>
+      <th class="center aligned">活动描述</th>
+      <th class="center aligned">活动总结</th>
+      <th class="center aligned">发起人</th>
+      <th class="center aligned">预计费用</th>
+      <th class="center aligned">实际费用</th>
+      <th class="center aligned">是否达到预期效果</th>
+      <th class="center aligned">开始日期</th>
+      <th class="center aligned">结束日期</th>
+      <th class="center aligned">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render :partial => "list", :collection => @activities, :as => :activity %>
+    </tbody>
+  </table>
+  <span class="blue">
+      <%= page_entries_info(@activities) %>
+    </span>
+  <%= paginate(@activities, :theme => 'admin') %>
+</div>

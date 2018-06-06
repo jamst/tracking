@@ -1,0 +1,40 @@
+<tr id="page_tag_<%= page_tag.id %>">
+  <td class="center aligned">
+    <%= page_tag.base_name %>
+  </td>
+
+  <td class="center aligned">
+    <%= page_tag.name %>
+  </td>
+
+  <td class="center aligned">
+    <%= page_tag.page_type %>
+  </td>
+
+  <td class="center aligned">
+    <%= page_tag.page_url %>
+  </td>
+
+  <td class="center aligned">
+    <%= page_tag.i18n_attr_status %>
+  </td>
+
+  <td class="center aligned">
+    <%= page_tag.parent&.name %>
+  </td>
+
+  <td class="center aligned">
+    <%= page_tag.updated_at.to_date %>
+  </td>
+
+  <td class="center aligned">
+    <%= link_to edit_admin_wh_tags_page_tag_path(page_tag.id), remote: true, 'data-content' => "修改标签", 'data-variation' => 'inverted', class: "ui icon blue basic button" do %>
+      <i class="edit icon"></i>
+    <% end %>
+
+    <%= link_to admin_wh_tags_page_tag_path(page_tag.id), method: :delete, remote: true, 'data-content' => "关闭标签", 'data-variation' => 'inverted', class: "ui icon red basic button", data: {confirm: "确定删除吗?"} do %>
+      <i class="close icon"></i>
+    <% end %>
+  </td>
+
+</tr>

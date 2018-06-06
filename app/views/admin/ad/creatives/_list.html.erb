@@ -1,0 +1,36 @@
+<tr id="creative_<%= creative.id %>">
+  <td class="center aligned">
+    <%= @campaign.name %> 
+  </td>
+
+   <td class="center aligned">
+    <%= creative.name %> 
+  </td>
+
+  <td class="center aligned">
+     <%= creative.link %> 
+  </td>
+
+  <td class="center aligned">
+    图片
+  </td>
+
+  <td class="center aligned">
+     <%= creative.ad_size %> 
+  </td>
+
+  <td class="center aligned">
+    <%= creative.i18n_attr_status %>
+  </td>
+
+  <td class="center aligned">
+    <%= link_to edit_admin_ad_creative_path(creative.id,campaign_id:@campaign.id), remote: true, 'data-content' => "修改创意", 'data-variation' => 'inverted', class: "ui icon blue basic button" do %>
+      <i class="edit icon"></i>
+    <% end %>
+
+    <%= link_to admin_ad_creative_path(creative.id,campaign_id:@campaign.id), method: :delete, remote: true, 'data-content' => "删除创意", 'data-variation' => 'inverted', class: "ui icon red basic button", data: {confirm: "确定删除吗?"} do %>
+      <i class="close icon"></i>
+    <% end %>
+  </td>
+
+</tr>

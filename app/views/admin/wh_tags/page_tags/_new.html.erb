@@ -1,0 +1,27 @@
+<%= simple_form_for @page_tag, url: admin_wh_tags_page_tags_path, method: :post, remote: true do |f| %>
+  <div id="form_message" class="two fields red" style="margin-left: 15px;display:none;"></div>
+
+  <div class="two fields">
+    <%= f.input :base_name, label: "专题名称" %>
+    <%= f.input :page_type, as: :select, collection: ["前台客户","后台员工"], include_blank: '统计类型', selected:"前台客户", input_html: {class: 'ui search fluid dropdown '}, label: "统计类型" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :name, label: "名称" %>
+    <%= f.input :page_url, label: "页面链接" %>
+  </div>
+
+  <div class="two fields">
+    <%= f.input :status, as: :select, collection: select_options_from_enum(PageTag, :status), include_blank: '请选择',input_html: {class: 'ui dropdown fluid'}, label: "状态" %>
+    <%= f.input :parent_id, as: :select, collection:PageTag.where("parent_id is null")&.map{|_|[_.name,_.id]}, include_blank: '请选择', input_html: {class: 'ui search fluid dropdown '}, label: "父标签" %>
+  </div>
+
+  <div class="field">
+    <div class="actions ">
+      <div class="ui button primary" id="commition">提交</div>
+      <div class="ui cancel button">取消</div>
+    </div>
+  </div>
+
+<% end %>
+

@@ -1,0 +1,33 @@
+<div class="ui orange segment" style='background: rgba(255, 255, 255, 0.2);'>
+  <table>
+   <tr>
+  <% @uuids.each_with_index do |uuid,i| %>
+    <% em = User.find_by( id:cache_read(uuid).to_i ) %>
+    <% unless em %>
+        <% i += 1 %>
+        <% if ( i%10== 0 && i != 0 ) %>
+           <td style="width: 200px;" style="margin-bottom: 30px;">
+              <div style="text-align: center;">
+                <a data-remote="true" href="/admin/user_trackings/analysis?tag=user&em_id=<%= em&.id %>&opxpid=<%= uuid %>" class="ui teal image label" >
+                  <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= cache_read("#{uuid}_user_uuids") %>
+                </a>
+              </div>
+              <div style="margin-bottom: 15px; text-align: center;"><%= "#{em&.company&.name_cn || '游客' }" %></div>
+           <td>
+           </tr>  
+           <tr style="margin-bottom: 30px;">
+        <% else %>
+           <td style="width: 200px;" style="margin-bottom: 30px;">
+              <div style="text-align: center;">
+                <a data-remote="true" href="/admin/user_trackings/analysis?tag=user&em_id=<%= em&.id %>&opxpid=<%= uuid %>" class="ui teal image label" >
+                    <%= image_tag 'male.jpg', class: 'ui avatar image' %><%= cache_read("#{uuid}_user_uuids") %>
+                </a>
+              </div>
+              <div style="margin-bottom: 15px;text-align: center;"><%= "#{em&.company&.name_cn || '游客' }" %></div>
+           </td>
+        <% end %>  
+    <% end %>    
+  <% end %>
+  </tr>
+  </table>
+</div>

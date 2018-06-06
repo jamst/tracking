@@ -1,0 +1,78 @@
+<tr id="activity_<%= activity.id %>">
+  <td class="center aligned">
+    <%= activity.name %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity&.category_type&.name %>
+    <% if activity.activity_mod == 'Activities::JdticketWelfare' %>
+      <%= link_to new_admin_cms_activity_detail_path(activity_id: activity.id), class: 'ui icon popups', remote: true, data: {content: '添加活动规则', variation: 'inverted'} do %>
+        <i class="plus icon green"></i>
+      <% end %>
+
+      <%= link_to  admin_cms_activity_details_path(activity_id: activity.id), class: 'ui icon popups', data: {content: '查看活动规则详情', variation: 'inverted'}, remote: true do %>
+        <i class="tasks icon"></i>
+      <% end %>
+
+      <%= link_to  jd_activity_details_admin_cms_jd_tickets_path(activity_id: activity.id), class: 'ui icon popups', data: {content: '京东券活动明细', variation: 'inverted'} do %>
+        <i class="book icon"></i>
+      <% end %>
+
+    <% end %>
+  </td>
+
+
+  <td class="center aligned">
+    <%= activity.i18n_attr_status %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity.base_tags %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity.tags %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity.describe %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity.summary %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity.employee&.name %>
+  </td>
+
+  <td class="center aligned">
+    <%= number_to_currency activity.expected_cost, unit: "￥" %>
+  </td>
+
+  <td class="center aligned">
+    <%= number_to_currency activity.actual_cost, unit: "￥" %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity.i18n_attr_effect %>
+  </td>
+
+  <td class="center aligned">
+    <%= activity.start_time %>
+  </td>
+  <td class="center aligned">
+    <%= activity.expiry_on %>
+  </td>
+
+  <td class="center aligned">
+    <%= link_to edit_admin_cms_activity_path(activity.id), remote: true, 'data-content' => "修改活动信息", 'data-variation' => 'inverted', class: "ui icon blue basic button" do %>
+      <i class="edit icon"></i>
+    <% end %>
+
+    <%= link_to admin_cms_activity_path(activity.id), method: :delete, 'data-content' => "删除活动信息", 'data-variation' => 'inverted', class: "ui icon red basic button", data: {confirm: "确定删除吗?"} do %>
+      <i class="close icon"></i>
+    <% end %>
+  </td>
+
+</tr>

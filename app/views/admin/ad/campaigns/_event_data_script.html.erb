@@ -1,0 +1,48 @@
+<%= simple_form_for @campaign, url: save_event_data_admin_ad_campaigns_path(id:@campaign.id), method: :post, remote: true do |f| %>
+  <div id="form_message" class="two fields red" style="margin-left: 15px;display:none;"></div>
+
+  <div class="two fields">
+    <div class="field">
+      <label><%= link_to "转化节点1", get_event_data_script_admin_ad_campaigns_path(id:@campaign.id,event_no:'event_1'), remote: true, 'data-content' => "设计转化节点", 'data-variation' => 'inverted' %></label>
+      <%= f.input :event_1, label: false %>
+    </div>
+
+   <div class="field">
+      <label><%= link_to "转化节点2", get_event_data_script_admin_ad_campaigns_path(id:@campaign.id,event_no:'event_2'), remote: true, 'data-content' => "设计转化节点", 'data-variation' => 'inverted' %></label>
+      <%= f.input :event_2, label: false %>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label><%= link_to "转化节点3", get_event_data_script_admin_ad_campaigns_path(id:@campaign.id,event_no:'event_3'), remote: true, 'data-content' => "设计转化节点", 'data-variation' => 'inverted' %></label>
+      <%= f.input :event_3, label: false %>
+    </div>
+
+    <div class="field">
+      <label><%= link_to "转化节点4", get_event_data_script_admin_ad_campaigns_path(id:@campaign.id,event_no:'event_4'), remote: true, 'data-content' => "设计转化节点", 'data-variation' => 'inverted' %></label>
+      <%= f.input :event_4, label: false %>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <label><%= link_to "转化节点5", get_event_data_script_admin_ad_campaigns_path(id:@campaign.id,event_no:'event_5'), remote: true, 'data-content' => "设计转化节点", 'data-variation' => 'inverted' %></label>
+      <%= f.input :event_5, label: false %>
+    </div>
+
+   <div class="field">
+      <label><%= link_to "转化节点6", get_event_data_script_admin_ad_campaigns_path(id:@campaign.id,event_no:'event_6'), remote: true, 'data-content' => "设计转化节点", 'data-variation' => 'inverted' %></label>
+      <%= f.input :event_6, label: false %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="actions ">
+      <div class="ui button primary" id="commition">提交</div>
+      <div class="ui cancel button">取消</div>
+    </div>
+  </div>
+
+<% end %>
+

@@ -1,0 +1,40 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a>广告计划管理</h2>
+  </div>
+</div>
+
+<div class="ui grid">
+  <div class="left floated  wide column">
+    <%= render partial: 'search_form' %>
+  </div>
+</div>
+
+<div class="ui blue segment">
+  <div class="ui grid">
+    <div class="left floated wide column">
+      <%= link_to_with_permissions '新增广告', new_admin_ad_campaign_path(), class: 'ui primary button', remote: true %>
+    </div>
+  </div>
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr>
+      <th class="center aligned">广告名称</th>
+      <th class="center aligned">相关广告创意</th>
+      <th class="center aligned">曝光量</th>
+      <th class="center aligned">点击量</th>
+      <th class="center aligned">转化量</th>
+      <th class="center aligned">投放状态</th>
+      <th class="center aligned">投放时段</th>
+      <th class="center aligned">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render :partial => "list", :collection => @campaigns, :as => :campaign %>
+    </tbody>
+  </table>
+  <span class="blue">
+      <%= page_entries_info(@campaigns) %>
+    </span>
+  <%= paginate(@campaigns, :theme => 'admin') %>
+</div>

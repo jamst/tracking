@@ -1,0 +1,4 @@
+$('#activity_details_modal').remove();
+$('body').append('<div class="ui modal" id="activity_details_modal"><i class="close icon"></i><h2 class="ui dividing header">查看活动规则</h2><%= j(render 'index') %></div>');
+$('#activity_details_modal').modal('setting', {autofocus: false}).modal('show');
+$('select.dropdown').dropdown();

@@ -1,0 +1,2 @@
+class ActivityCategory < ApplicationRecord
+end

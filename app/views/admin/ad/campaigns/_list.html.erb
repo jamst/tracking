@@ -1,0 +1,49 @@
+<tr id="campaign_<%= campaign.id %>">
+  <td class="center aligned">
+    <%= campaign.name %> 
+  </td>
+
+  <td class="center aligned">
+    <%= link_to "#{campaign.creatives.present? ? campaign&.creatives&.size : 'New' }", admin_ad_creatives_path(campaign_id: campaign.id),target:"_blank", class: 'ui icon popups', data: {content: '相关广告创意', variation: 'inverted'} %>
+  </td>
+
+  <td class="center aligned">
+    <%= link_to "#{campaign.exposure_das.size if campaign.exposure_das.present?}", "/admin/report/temporary_reports/report?id=111&search_params[campaign_id]=#{campaign.id}&by_name=广告曝光量", class: 'ui icon popups',target:"_blank", data: {content: '曝光量', variation: 'inverted'} %>
+  </td>
+
+  <td class="center aligned">
+    <%= link_to "#{campaign.click_das.size if campaign.click_das.present?}", "/admin/report/temporary_reports/report?id=112&search_params[campaign_id]=#{campaign.id}&by_name=广告点击量", class: 'ui icon popups',target:"_blank", data: {content: '点击量', variation: 'inverted'} %>
+  </td>
+
+  <td class="center aligned">
+    <%= link_to "#{campaign.event_das.size if campaign.event_das.present?}", "/admin/report/temporary_reports/report?id=113&search_params[campaign_id]=#{campaign.id}&by_name=广告转化量", class: 'ui icon popups',target:"_blank", data: {content: '转化量', variation: 'inverted'} %>
+  </td>
+
+  <td class="center aligned">
+    <%= campaign.i18n_attr_status %>
+  </td>
+
+  <td class="center aligned">
+    <%= campaign.start_time.to_date %>
+    -
+    <%= campaign.end_time.to_date %>
+  </td>
+
+  <td class="center aligned">
+    <%= link_to edit_admin_ad_campaign_path(campaign.id), remote: true, 'data-content' => "修改广告计划", 'data-variation' => 'inverted', class: "ui icon blue basic button" do %>
+      <i class="edit icon"></i>
+    <% end %>
+
+    <%= link_to event_data_script_admin_ad_campaigns_path(id:campaign.id), remote: true, 'data-content' => "设计转化节点", 'data-variation' => 'inverted', class: "ui icon blue basic button" do %>
+      <i class="plus icon green"></i>
+    <% end %>
+
+    <%= link_to admin_ad_campaign_path(campaign.id), method: :delete, remote: true, 'data-content' => "删除广告计划", 'data-variation' => 'inverted', class: "ui icon red basic button", data: {confirm: "确定删除吗?"} do %>
+      <i class="close icon"></i>
+    <% end %>
+  </td>
+
+</tr>
+
+
+

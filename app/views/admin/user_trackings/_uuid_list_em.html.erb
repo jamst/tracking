@@ -1,0 +1,44 @@
+<div class="ui orange segment" style='background: rgba(255, 255, 255, 0.2);'>
+
+  <table class="ui selectable striped celled table">
+    <thead>
+      <tr> 
+        <th class="center aligned" width="10%"> 客户名称 </th>
+        <th class="center aligned" width="15%"> 联系方式 </th>
+        <th class="center aligned" width="10%"> 浏览总数 </th>
+        <th class="center aligned" width="15%"> 关注标签 </th>
+        <th class="center aligned" width="10%"> 撮合 </th>
+        <th class="center aligned" width="10%"> 操作 </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% em = Company.find_by( name_cn:params[:search_params][:company] ) %>
+      <% user_ids = em.users&.pluck(&:opxpid) %>
+      <% company_users =  user_ids & @uuids %>
+
+      <% company_users.each do |uuid| %>
+        <tr>
+           <td class="center aligned"> 
+              <a data-remote="true" href="/admin/user_trackings/analysis?tag=user&em_id=<%= em&.id %>&opxpid=<%= uuid %>" class="ui teal image label" >
+                  <%= "#{em&.company&.name_cn || '游客' }" %> 
+              </a> 
+           </td>
+           <td class="center aligned"> 
+             <%= em&.name %>
+             <%= em&.mobile %>
+             <%= qq_link em&.contact&.qq %>
+           </td>
+           <td class="center aligned"> <%= cache_read("#{uuid}_user_uuids") %> </td>
+           <td class="center aligned"> <%= user_tracking_tag.slice(*cache_read("#{uuid}_user_tags")).values.to_s %> </td>
+           <td class="center aligned"> <%= em&.company&.trader&.name %> </td>
+           <td class="center aligned"> 
+              <%= link_to '查看', analysis_admin_user_trackings_path(em_id:em&.id,opxpid:uuid), remote: true , class: 'ui primary button' %>
+              <%= link_to '分析', admin_supply_history_datum_path(id: em&.company_id) , class: 'ui primary button' ,target: '_brank' if em&.company_id %>
+              <%= link_to '任务', admin_supply_history_datum_path(id: em&.company_id) , class: 'ui primary button' ,target: '_brank' if em&.company_id %>
+           </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+</div>

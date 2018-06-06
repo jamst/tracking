@@ -1,0 +1,12 @@
+<% if @page_tag.errors.blank? %>
+$("tbody").prepend('<%= j render('list', page_tag: @page_tag) %>');
+$("#page_tag_modal").modal('hide');
+<% else %>
+$(".red.pointing").remove();
+$(".field").removeClass('error');
+<% @page_tag.errors.messages.each do |key, value| %>
+//parent()方法：返回被选中元素的父元素
+$("#page_tag_<%= key %>").parent().addClass('error');
+$("#page_tag_<%= key %>").parent().append("<div class='ui basic red pointing prompt label transition visible'><%= value[0] %></div>");
+<% end %>
+<% end %>

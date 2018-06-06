@@ -1,0 +1,16 @@
+<% if @q.present? %>
+  <div class="ui blue segment">
+    <%= simple_form_for @q, url: admin_cms_jd_tickets_path, method: :get, wrapper: 'semantic_search_form' do |f| %>
+      <div class="ui five column grid">
+        <%= f.input 'category-like', placeholder: '按类别搜索' %>
+        <%= f.input 'denomination', placeholder: '按面额搜索' %>
+        <%= f.input 'card_id', placeholder: '按卡号搜索' %>
+        <%= f.input :status, collection: select_options_from_enum(Activities::JdTicket, :status), as: :select, include_blank: '选择发放状态',selected:"选择发放状态", input_html: {class: 'ui dropdown fluid'} %>
+
+        <div class="column">
+          <%= f.submit '搜索', class: 'ui primary button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

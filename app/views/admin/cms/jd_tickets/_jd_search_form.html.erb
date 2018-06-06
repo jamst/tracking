@@ -1,0 +1,16 @@
+<% if @q.present? %>
+  <div class="ui blue segment">
+    <%= simple_form_for @q, url: jd_activity_details_admin_cms_jd_tickets_path(), method: :get, wrapper: 'semantic_search_form' do |f| %>
+      <div class="ui five column grid">
+        <%= f.input :activity_id, placeholder: '活动id' %>
+        <%= f.input "created_at-gte", as: :string, placeholder: '创建时间大于', input_html: {onfocus: "(this.type='date')", onblur: "(this.type='text')"} %>
+        <%= f.input "created_at-lte", as: :string, placeholder: '创建时间小于', input_html: {onfocus: "(this.type='date')", onblur: "(this.type='text')"} %>
+        <%= f.input :status, collection: select_options_from_enum(Activities::JdticketWelfare, :status), as: :select, include_blank: '选择发放状态',selected:"选择发放状态", input_html: {class: 'ui dropdown fluid'} %>
+
+        <div class="column">
+          <%= f.submit '搜索', class: 'ui primary button' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

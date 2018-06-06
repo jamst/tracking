@@ -20,6 +20,9 @@ gem 'turbolinks'
 gem 'devise', git: 'https://github.com/plataformatec/devise.git'
 gem 'cancancan'
 
+# Files & Data
+gem 'carrierwave', '~> 1.0'
+
 # Store
 gem 'mysql2'
 

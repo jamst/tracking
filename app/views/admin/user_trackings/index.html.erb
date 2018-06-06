@@ -1,0 +1,35 @@
+<div class="ui grid" style="margin-bottom: 0px;">
+  <div class="left floated fourteen wide column" >
+    <a data-remote="true" href="/admin/user_trackings/delete_tracking" >
+      <button id="btn_b">手动同步数据</button>
+    </a>
+    <a data-remote="true" href="/admin/user_trackings/analysis_tracking" >
+      <button id="btn_b">手动转化分析</button>
+    </a>
+    <a href="/admin/report/temporary_reports/report?id=107&by_name=客户行为分析" target="_blank" >
+      <button id="btn_c">客户行为分析报表</button>
+    </a> 
+    <a href="/admin/report/temporary_reports/report?id=107&by_name=百度统计转化" target="_blank" >
+      <button id="btn_c">百度转化报告报表</button>
+    </a> 
+    <a href="/admin/wh_tags/page_tags" target="_blank" >
+      <button id="btn_c">追踪标签设置</button>
+    </a> 
+    <a href="/admin/trackings/employee_analysis" target="_blank" >
+      <button id="btn_c">平台数据分析</button>
+    </a> 
+    <a data-remote="true" href="/admin/user_trackings/show_details"  class="item">
+      <font style="font-weight: bold;font-size: 1rem;margin-left:20px;" >当前登录账户数：<%= cache_read("user_uuids")||0 %></font>
+    </a>
+  </div>
+</div>
+
+<div id="charts">
+  <%= render "/admin/user_trackings/chart/base_chart" %>
+</div>
+
+<div id="trackings">
+  <%= render "index" %>
+</div>
+
+<div id="hot_tags"></div>

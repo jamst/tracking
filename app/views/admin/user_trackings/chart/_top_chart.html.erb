@@ -1,0 +1,58 @@
+<div class="ui grid" style="margin-bottom: 5px;">
+  <div class="left floated fourteen wide column" >
+    <% ["base_chart","top_chart"].each do |chart_name| %>
+      <a data-remote="true" href="/admin/user_trackings/get_chart?chart_name=<%=chart_name%>"  class="item" style="margin-left: 20px;" >
+        <% if chart_name == params[:chart_name] || ( !params[:chart_name] && chart_name == "base_chart" ) %>
+          <font style="font-weight: bold;font-size: 1.28rem;color: orange" ><%=I18n.t(chart_name)%></font> 
+        <% else %>
+          <font style="font-weight: bold;font-size: 1.28rem;" ><%=I18n.t(chart_name)%></font> 
+        <% end %>  
+      </a>
+    <% end %>
+  </div>
+</div>
+
+
+<div style="overflow: hidden;">
+  <!-- 那个产品搜索Top20 -->
+  <div id="line_chart2" style="float: left; width:33%;height:400px; "></div>
+  <%  @report_arrys = Ad::UserTracking.find_by_sql("select substring(opxurl, 32, 20)  as k , count(opxurl) as v from user_trackings 
+    where time_now >= '#{Time.now.yesterday.to_date}'
+    and opxurl like 'http://test/products/%.html'
+    and opxurl not in ('http://test/products/structure_search.html','http://test/products/hot_chemicals.html','http://test/products/factory_direct_supplies.html')
+    group by opxurl 
+    order by v desc
+    limit 20") %>
+  <%= render 'shared/charts/pie_simple',div_id:"line_chart2",chart_title:"产品搜索Top20",show_time:Time.now.yesterday.to_date %>
+
+
+  <!-- 客户搜索产品数Top10 -->
+  <div id="line_chart1" style="float: left; width:33%;height:400px; "></div>
+  <% @report_arrys = Ad::UserTracking.find_by_sql(" select companies.name_cn as k,count(user_trackings.opxpid) as v from user_trackings 
+    left join users
+    on user_trackings.opxid = users.id
+    left join companies 
+    on users.company_id = companies.id
+    where companies.id is not null and time_now >= '#{Time.now.yesterday.to_date}' 
+    and opxurl like 'http://test/products/%.html'
+    and opxurl not in ('http://test/products/structure_search.html','http://test/products/hot_chemicals.html','http://test/products/factory_direct_supplies.html')
+    group by companies.id 
+    order by v desc 
+    limit 10 ") %>
+    <%= render 'shared/charts/pie_simple',div_id:"line_chart1",chart_title:"客户搜索产品数Top10",show_time:Time.now.yesterday.to_date %>
+
+  <!-- 那个客户访问量Top10 -->
+  <div id="line_chart3" style="float: left; width:33%;height:400px; "></div>
+  <% @report_arrys = Ad::UserTracking.find_by_sql(" select companies.name_cn as k ,count(*) as v from user_trackings 
+    left join users
+    on user_trackings.opxid = users.id
+    left join companies 
+    on users.company_id = companies.id
+    where user_trackings.opxid != 0 and time_now >= '#{Time.now.yesterday.to_date}'
+    group by companies.id  
+    order by v desc 
+    limit 10 ") %>
+    <%= render 'shared/charts/pie_simple',div_id:"line_chart3",chart_title:"客户访问量Top10",show_time:Time.now.yesterday.to_date %>
+
+</div>
+

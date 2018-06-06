@@ -1,0 +1,72 @@
+<div class="ui grid" style="margin-bottom: 5px;">
+  <div class="left floated fourteen wide column" >
+    <% ["base_chart","top_chart"].each do |chart_name| %>
+      <a data-remote="true" href="/admin/user_trackings/get_chart?chart_name=<%=chart_name%>"  class="item" style="margin-left: 20px;" >
+        <% if chart_name == params[:chart_name] || ( !params[:chart_name] && chart_name == "base_chart" ) %>
+          <font style="font-weight: bold;font-size: 1.28rem;color: orange" ><%=I18n.t(chart_name)%></font> 
+        <% else %>
+          <font style="font-weight: bold;font-size: 1.28rem;" ><%=I18n.t(chart_name)%></font> 
+        <% end %>  
+      </a>
+    <% end %>
+  </div>
+</div>
+
+
+<div style="overflow: hidden;">
+  <!-- 访客省市分布 -->
+  <div id="line_chart2" style="float: left; width:33%;height:400px; "></div>
+  <%  @report_arrys = Ad::UserTracking.find_by_sql("select users.province as 'k', count(*)as 'v'
+  from user_trackings
+  left join users
+  on users.id = user_trackings.opxid
+  where user_trackings.opxid is not null and  time_now >= '#{Time.now.yesterday.to_date}'  
+  and users.province != '' and  users.province != -1
+  group by k ") %>
+  <%= render 'shared/charts/pie_simple',div_id:"line_chart2",chart_title:"访客省市分布",show_time:Time.now.yesterday.to_date %>
+
+
+  <!-- 访客公司属性分布 -->
+  <div id="line_chart1" style="float: left; width:33%;height:400px; "></div>
+  <% @report_arrys = Ad::UserTracking.find_by_sql(" select 
+    case 
+     when companies.company_type = 1 then '中小型实验室'
+     when companies.company_type = 2 then '精细化工厂'
+     when companies.company_type = 3 then '高校研发机构'
+     when companies.company_type = 4 then '品牌试剂商'
+     when companies.company_type = 5 then 'CRO'
+     when companies.company_type = 6 then 'CMO'
+     when companies.company_type = 7 then '贸易公司'
+     when companies.company_type = 9 then '个人实验室'
+     when companies.company_type = 10 then '工厂贸易'
+     when companies.company_type = 11 then '实验室贸易'
+     else '其他' end as k, count(*)as 'v'
+    from user_trackings
+    left join users
+    on users.id = user_trackings.opxid
+    left join companies 
+    on companies.id = users.company_id
+    where user_trackings.opxid is not null and  time_now >= '#{Time.now.yesterday.to_date}' 
+    group by k") %>
+    <%= render 'shared/charts/pie_simple',div_id:"line_chart1",chart_title:"访客公司属性分布",show_time:Time.now.yesterday.to_date %>
+
+  <!-- 网站前15访问入口 -->
+  <div id="line_chart3" style="float: left; width:33%;height:400px; "></div>
+  <% @report_arrys = Ad::UserTracking.find_by_sql(" select substring(opxreferrer, 8, 14) as k , count(*) as v from user_trackings where `opxreferrer` not like 'http://www.whmall.com%' and  `opxreferrer` not like 'http://whmall.com/%'  and opxreferrer !='' group by k order by v desc limit 15") %>
+  <%= render 'shared/charts/pie_simple',div_id:"line_chart3",chart_title:"网站前15访问入口",show_time:"all" %>  
+
+</div>
+
+
+<!-- 曝光量 -->
+<div id="line_chart" style="height:400px"></div>
+<%  @report_arrys = Ad::UserTracking.find_by_sql("select (count(DISTINCT(opxpid)) - count(DISTINCT(opxid)) ) as count_opxid,
+  count(DISTINCT(opxpid)) as count_opxpid ,
+  DATE_FORMAT(time_now,'%Y-%m-%d') as format_date,
+  count(*) as count_visit
+  from user_trackings where time_now >= '#{Time.now-7.days}' group by format_date ") %>
+<%  @xx = @report_arrys.map(&:format_date)
+    @yy = %w(日曝光量 日客户数 日游客数)
+    @y_data = [@report_arrys.map(&:count_visit),@report_arrys.map(&:count_opxpid), @report_arrys.map(&:count_opxid)  ]
+%>
+<%= render 'shared/charts/line_chart',div_id:"line_chart",xx:@xx,yy:@yy,y_data:@y_data,chart_type:"bar" %>

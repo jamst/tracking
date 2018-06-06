@@ -1,0 +1,25 @@
+<tr id="jd_ticket_<%= jd_ticket.id %>">
+  <td class="center aligned">
+    <%= jd_ticket.category %>
+  </td>
+
+  <td class="center aligned">
+    <%= number_to_currency jd_ticket.denomination, unit:"￥" %>
+  </td>
+
+  <td class="center aligned">
+    <%= jd_ticket.card_id %>
+  </td>
+
+  <td class="center aligned">
+    <%= jd_ticket.card_password %>
+  </td>
+
+  <td class="center aligned">
+    <%= jd_ticket.expiry_on %>
+  </td>
+
+  <td class="center aligned">
+    <%= jd_ticket.i18n_attr_status %>
+  </td>
+</tr>

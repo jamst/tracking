@@ -1,0 +1,42 @@
+<tr id="jdticket_welfare_<%= jdticket_welfare.id %>">
+  <td class="center aligned">
+    <%= jdticket_welfare.order_detail.customer_order_no %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.user&.company&.name_cn %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.user.name %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.user.mobile %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.activity.name %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.created_at.to_date %>
+  </td>
+
+  <td class="center aligned">
+    <%= number_to_currency jdticket_welfare.denomination, unit:"￥" %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.card_password %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.expiry_on&.to_date %>
+  </td>
+
+  <td class="center aligned">
+    <%= jdticket_welfare.i18n_attr_status %>
+  </td>
+
+</tr>
