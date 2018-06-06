@@ -3,4 +3,5 @@ class Admin::BaseController < ActionController::Base
     layout false 
     respond_to :html
     before_action :authenticate_employee!
+    before_action :update_or_create_opxpid
 end

@@ -1,0 +1,28 @@
+<div class="ui grid">
+  <div class="left floated fourteen wide column">
+    <h2><a href="javascript:history.back()"><i class="blue reply icon"></i></a>员工管理</h2>
+  </div>
+</div>
+<%= render 'search_form'  %>
+
+<div class="ui blue segment">
+  <table class="ui selectable striped celled table">
+    <thead>
+    <tr >
+      <th class="center aligned">ID</th>
+      <th class="center aligned">邮箱</th>
+      <th class="center aligned">姓名</th>
+      <th class="center aligned">手机</th>
+      <th class="center aligned">上级</th>
+      <th class="center aligned">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= render partial: 'list', collection: @employees, as: :employee %>
+    </tbody>
+  </table>
+  <span class="blue">
+    <%= page_entries_info(@employees) %>
+  </span>
+  <%= paginate(@employees, :theme => 'admin')%>
+</div>
